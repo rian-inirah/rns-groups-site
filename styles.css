@@ -163,6 +163,36 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 @media(min-width:900px){.grid-two{grid-template-columns:1fr 1fr}}
 .checklist{margin:8px 0 0 0;padding:0 0 0 18px;color:var(--muted)}
 
+/* =========================
+   Redesigned About section
+   ========================= */
+.about { padding-top:24px; padding-bottom:32px; }
+.about-inner{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start;margin-bottom:18px}
+.about-left{min-width:0}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border-radius:999px;color:var(--accent);font-weight:600;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border:1px solid rgba(76,194,255,0.12);font-size:0.95rem}
+.about-title{margin:18px 0 10px;font-size:clamp(34px,5.2vw,52px);line-height:1.05;font-weight:800;letter-spacing:-0.5px}
+.about-title .accent{color:var(--accent);margin-left:10px}
+.accent-underline{width:56px;height:6px;border-radius:4px;background:linear-gradient(90deg,var(--accent), rgba(76,194,255,0.18));margin-bottom:14px}
+.about-lead{color:var(--muted);max-width:62ch;font-size:1rem;line-height:1.7;margin:0 0 8px}
+.about-lead.small{margin-top:6px}
+.about-cta{display:flex;gap:12px;margin-top:10px}
+.about-right{display:flex;flex-direction:column;gap:18px}
+.info-card{background:linear-gradient(180deg, rgba(76,194,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:24px;border:1px solid rgba(76,194,255,0.07);box-shadow:0 28px 80px rgba(76,194,255,0.03), inset 0 0 28px rgba(76,194,255,0.01)}
+.info-card p{margin:0;color:var(--text);line-height:1.6}
+.info-card hr{border:0;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0}
+.muted-quote{color:var(--muted);font-style:italic}
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:6px}
+.feature-card{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.02);transition:transform .18s ease,box-shadow .18s ease;min-height:120px}
+.feature-card:hover{transform:translateY(-6px);box-shadow:0 18px 48px rgba(0,0,0,0.5)}
+.feature-icon{width:78px;height:78px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg, rgba(76,194,255,0.05), rgba(255,255,255,0.01));border:1px solid rgba(76,194,255,0.06);color:var(--accent);flex:0 0 78px}
+.feature-icon svg{width:40px;height:40px;stroke:currentColor;fill:none}
+.feature-body{display:flex;flex-direction:column;gap:8px}
+.feature-head{display:flex;align-items:center;gap:12px}
+.feature-num{background:linear-gradient(180deg, rgba(76,194,255,0.12), rgba(76,194,255,0.06));color:var(--accent);padding:8px 10px;border-radius:8px;width:44px;text-align:center;font-weight:700;box-shadow:0 6px 18px rgba(76,194,255,0.03) inset;font-size:0.95rem}
+.feature-card h3{margin:0;font-size:1.05rem;color:var(--text)}
+.feature-card p{margin:0;color:var(--muted);line-height:1.6}
+.ticker{margin-top:10px}
+
 /* Ticker */
 .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:22px}
 .ticker-track{display:inline-flex;gap:34px;white-space:nowrap;animation:ticker 24s linear infinite;padding:12px 0;color:#c8d1da}
@@ -223,6 +253,12 @@ label{color:#cbd5e1;font-size:14px}
     .hero-cta{flex-wrap:wrap}
     .contact .content-narrow{padding:26px 14px}
     .brand-text{font-size:1rem;letter-spacing:1px}
+    .about-inner{grid-template-columns:1fr;gap:18px}
+    .about-right{order:2}
+    .feature-grid{grid-template-columns:1fr}
+    .feature-icon{width:66px;height:66px;flex:0 0 66px}
+    .feature-card{min-height:auto}
+    .about-title{font-size:clamp(24px,7.5vw,36px)}
 }
 
 @media(max-width:640px){
