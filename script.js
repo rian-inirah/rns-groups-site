@@ -63,5 +63,19 @@ form?.addEventListener('submit', (e)=>{
 });
 
 // Globe animation moved to globe.js (Three.js implementation)
+// Highlight active nav link
+const currentPage = window.location.pathname.split("/").pop(); // e.g. 'imports.html'
+document.querySelectorAll(".site-nav .nav-link").forEach(link => {
+  const href = link.getAttribute("href");
+  if (
+    (currentPage === "" && href.includes("index.html")) || // handle root
+    currentPage === href ||
+    (currentPage.includes("index") && href.includes("index.html")) ||
+    (currentPage.includes("imports") && href.includes("imports.html")) ||
+    (currentPage.includes("exports") && href.includes("exports.html"))
+  ) {
+    link.classList.add("is-active");
+  }
+});
 
 
