@@ -64,11 +64,17 @@ form?.addEventListener('submit', (e)=>{
 
 // Globe animation moved to globe.js (Three.js implementation)
 // Highlight active nav link
-const currentPage = window.location.pathname.split("/").pop(); // e.g. 'imports.html'
-document.querySelectorAll(".site-nav .nav-link").forEach(link => {
+// ====== NAVIGATION ACTIVE LINK DETECTION ======
+
+// Highlight based on current page (for Import / Export / Home)
+// ====== NAVIGATION ACTIVE LINK DETECTION ======
+const currentPage = window.location.pathname.split("/").pop();
+document.querySelectorAll(".nav-link").forEach(link => {
   const href = link.getAttribute("href");
+  link.classList.remove("is-active");
+
   if (
-    (currentPage === "" && href.includes("index.html")) || // handle root
+    (currentPage === "" && href.includes("index.html")) ||
     currentPage === href ||
     (currentPage.includes("index") && href.includes("index.html")) ||
     (currentPage.includes("imports") && href.includes("imports.html")) ||
@@ -77,5 +83,63 @@ document.querySelectorAll(".site-nav .nav-link").forEach(link => {
     link.classList.add("is-active");
   }
 });
+
+// ====== CONTACT SECTION SCROLL TRACKER ======
+if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
+  const contactSection = document.querySelector("#contact");
+  const homeLink = document.querySelectorAll('.nav-link[href="index.html"], .nav-link[href="./index.html"]');
+  const contactLink = document.querySelectorAll('.nav-link[href*="#contact"]');
+
+  if (contactSection && contactLink.length) {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // When contact section is visible
+            document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
+            contactLink.forEach(l => l.classList.add("is-active"));
+          } else {
+            // When contact section leaves viewport (scroll back up)
+            const rect = contactSection.getBoundingClientRect();
+            if (rect.top > window.innerHeight * 0.6) {
+              document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
+              homeLink.forEach(l => l.classList.add("is-active"));
+            }
+          }
+        });
+      },
+      { root: null, threshold: 0.4 }
+    );
+    observer.observe(contactSection);
+  }
+}
+
+// ====== SMOOTH SCROLL TO CONTACT ======
+document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
+  link.addEventListener("click", e => {
+    const target = document.querySelector("#contact");
+    if (target && window.location.pathname.includes("index.html")) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+      document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
+      link.classList.add("is-active");
+    }
+  });
+});
+
+// ====== SIDEBAR MENU ACTIVE HIGHLIGHT ======
+const sidebarLinks = document.querySelectorAll(".sidebar-nav .nav-link");
+sidebarLinks.forEach(link => {
+  const href = link.getAttribute("href");
+  if (currentPage.includes("imports") && href.includes("imports.html")) {
+    link.classList.add("is-active");
+  } else if (currentPage.includes("exports") && href.includes("exports.html")) {
+    link.classList.add("is-active");
+  } else if ((currentPage === "" || currentPage.includes("index")) && href.includes("index.html")) {
+    link.classList.add("is-active");
+  }
+});
+
+
 
 
