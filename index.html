@@ -615,66 +615,94 @@
 
             <section id="why" class="why" data-animate="fade-up" aria-labelledby="why-heading">
                   <div class="content-narrow">
-                    <h2 id="why-heading" class="why-heading">
-                      Why Choose RNS <span class="accent">Groups</span>
-                    </h2>
-                    <div class="why-underline" aria-hidden="true"></div>
-                
-                    <ul class="why-points" role="list">
-                      <li>
-                        <strong>Transparency First</strong> – Upfront pricing, clear documentation, and open communication.
-                      </li>
-                      <li>
-                        <strong>Strict Quality Gate</strong> – Dual inspections at origin and port of loading.
-                      </li>
-                      <li>
-                        <strong>Dedicated Logistics</strong> – Expert management of customs, freight, and cold-chain operations.
-                      </li>
-                      <li>
-                        <strong>Reliable Documentation</strong> – Complete Phytosanitary, Bill of Lading, and export compliance support.
-                      </li>
-                      <li>
-                        <strong>Responsive Support</strong> – Quick turnaround on quotes, samples, and shipment updates.
-                      </li>
-                    </ul>
+                        <h2 id="why-heading" class="why-heading">
+                              Why Choose RNS <span class="accent">Groups</span>
+                        </h2>
+                        <div class="why-underline" aria-hidden="true"></div>
+
+                        <ul class="why-points" role="list">
+                              <li>
+                                    <strong>Transparency First</strong> – Upfront pricing, clear documentation, and open
+                                    communication.
+                              </li>
+                              <li>
+                                    <strong>Strict Quality Gate</strong> – Dual inspections at origin and port of
+                                    loading.
+                              </li>
+                              <li>
+                                    <strong>Dedicated Logistics</strong> – Expert management of customs, freight, and
+                                    cold-chain operations.
+                              </li>
+                              <li>
+                                    <strong>Reliable Documentation</strong> – Complete Phytosanitary, Bill of Lading,
+                                    and export compliance support.
+                              </li>
+                              <li>
+                                    <strong>Responsive Support</strong> – Quick turnaround on quotes, samples, and
+                                    shipment updates.
+                              </li>
+                        </ul>
                   </div>
-                </section>
-                
-            <section id="contact" class="contact" data-animate="slide-left">
+            </section>
+
+            <section id="contact" class="contact" data-animate="slide-left" aria-labelledby="contact-main-heading">
                   <div class="content-narrow">
-                        <h2>Ready to Secure Your Supply? Request a Custom Quote Today.</h2>
-                        <p>
+                        <div class="about-left">
+                              <h2 id="contact-main-heading" class="about-heading">
+                                    Contact <span class="accent">Us</span>
+                              </h2>
+                              <div class="about-pill" aria-hidden="true"></div>
+                        </div>
+
+                        <h2 class="contact-h2-title">
+                              Ready to Secure Your Supply? Request a Custom Quote Today.
+                        </h2>
+
+                        <p class="contact-paragraph">
                               Contact our sales team to discuss your volume requirements, request product samples, or
-                              verify
-                              quality documentation. We guarantee a response within 1 hour. Let’s grow your business,
-                              together.
+                              verify quality documentation. We guarantee a response within 1 hour.<br>
+                              <strong class="contact-paragraph-strong">Let’s grow your business, together.</strong>
                         </p>
-                        <form id="contactForm" class="contact-form" novalidate>
+
+                        <form id="contactForm" class="contact-message-box" novalidate>
                               <div class="form-row">
-                                    <label for="name">Name</label>
-                                    <input id="name" name="name" type="text" placeholder="Your full name" required>
+                                    <label for="name">Full Name</label>
+                                    <input id="name" name="name" type="text" placeholder="Enter your full name" required
+                                          pattern="[A-Za-z\s]+" title="Name must contain only letters and spaces.">
                               </div>
-                              <div class="form-row form-row-inline">
-                                    <div>
-                                          <label for="country">Country</label>
-                                          <select id="country" name="country" required></select>
-                                    </div>
-                                    <div>
-                                          <label for="phone">Phone (with country code)</label>
-                                          <input id="phone" name="phone" type="tel" placeholder="+91 63824 94303"
-                                                required>
-                                    </div>
-                              </div>
+
                               <div class="form-row">
-                                    <label for="email">Email</label>
-                                    <input id="email" name="email" type="email" placeholder="you@company.com" required>
+                                    <label for="country">Country</label>
+                                    <select id="country" name="country" required
+                                          onchange="updateCountryCodeDisplay(this.value)">
+                                    </select>
+                                    <input type="hidden" id="countryCodeHidden" name="countryCode">
                               </div>
+
+                              <div class="form-row">
+                                    <label for="phone">Phone Number</label>
+                                    <div class="phone-input-group">
+                                          <span id="countryCodeDisplay" class="country-code-display">Code</span>
+                                          <input id="phone" name="phone" type="tel" placeholder="Your phone number"
+                                                required pattern="[0-9]+"
+                                                title="Phone number must contain only digits (0-9).">
+                                    </div>
+                              </div>
+
+                              <div class="form-row">
+                                    <label for="email">Email Address</label>
+                                    <input id="email" name="email" type="email" placeholder="your.email@company.com"
+                                          required title="Please include an '@' symbol in the email address.">
+                              </div>
+
                               <div class="form-row">
                                     <label for="message">Message</label>
-                                    <textarea id="message" name="message" rows="5" placeholder="Tell us what you need…"
+                                    <textarea id="message" name="message" rows="5"
+                                          placeholder="Tell us about your requirements, volume needs, or any specific questions..."
                                           required></textarea>
                               </div>
-                              <button class="btn btn-light" type="submit">Send Message</button>
+
+                              <button class="btn btn-primary btn-small" type="submit">Send Message</button>
                         </form>
                   </div>
             </section>

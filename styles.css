@@ -123,7 +123,7 @@ button,summary{touch-action:manipulation}
 .sidebar-nav .nav-link:hover{background:rgba(255,255,255,.04);color:var(--accent)}
 .sidebar-nav details{padding:0 6px}
 .sidebar-nav .sub-link{display:block;padding:10px 20px;color:var(--muted)}
-.sidebar-nav .nav-link.is-active{background:rgba(255,255,255,.08);color:var(--accent);font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.sidebar-nav .nav-link.is-active{background:rgba(255,255,255,.08);color:var(--accent);font-weight:600;box-shadow:0 0 8px rgba(76,194,255,.25)}
 .sidebar-nav .is-active{color:var(--accent)}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:55}
 .overlay.show{opacity:1;pointer-events:auto}
@@ -513,14 +513,184 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     .why h2{font-size:1.8rem;}
 }
 
-/* Contact */
+/* Contact (Legacy Container for alignment, content moved to .contact-message-box) */
 .contact-form{display:grid;gap:12px;margin-top:14px}
 .form-row{display:grid;gap:6px}
 .form-row-inline{grid-template-columns:1fr;gap:12px}
 .form-row-inline>div{display:grid;gap:6px}
 @media(min-width:720px){.form-row-inline{grid-template-columns:1fr 1fr}}
+/* Keep base input styling but new .contact-message-box overrides them below */
 input,select,textarea{background:#0c0e10;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:12px}
 label{color:#cbd5e1;font-size:14px}
+
+/* =================================
+   Contact Section Styling Updates
+   ================================= */
+
+/* H2 style (white text as shown in image 2) */
+.contact-h2-title {
+    color: var(--text); /* Ensures the heading is white */
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+/* Paragraph styles (matches font size, color, and line height of image 2) */
+.contact-paragraph {
+    color: var(--muted);
+    font-size: 1.05rem; /* Slightly larger text for readability */
+    line-height: 1.6;
+    max-width: 68ch;
+    margin-top: 0;
+    margin-bottom: 28px; /* Spacing before the form box */
+}
+
+/* Strong text style within the paragraph */
+.contact-paragraph-strong {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--text); /* Set to white text as shown in image 2 */
+}
+
+
+/* Form Box (New styling to match image 3) */
+.contact-message-box {
+    /* Use the same professional/creative card styling as the About Card */
+    position: relative;
+    border-radius: 18px;
+    padding: 30px;
+    background: linear-gradient(180deg, rgba(12,14,16,0.92), rgba(255,255,255,0.01));
+    border: 1px solid rgba(76,194,255,0.06);
+    box-shadow: 0 28px 64px rgba(3,6,8,0.6), inset 0 0 26px rgba(41,168,255,0.02);
+    min-width: 300px;
+    overflow: hidden;
+    display: grid;
+    gap: 16px; /* Spacing between form rows */
+}
+
+/* Glowing accent border for the message box (optional, matches About Card glow) */
+.contact-message-box::before{
+    content: "";
+    position: absolute;
+    inset: -6% -10%;
+    background: radial-gradient(closest-side, rgba(41,168,255,0.12), rgba(0,0,0,0) 52%);
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 22px;
+}
+.contact-message-box > * {
+    position: relative; /* Ensure form elements are above the pseudo-element glow */
+    z-index: 1;
+}
+
+/* Form element base styling override for the contact form to match the image */
+.contact-message-box input,
+.contact-message-box select,
+.contact-message-box textarea {
+    background: var(--bg); /* Darker background inside the form */
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+    padding: 14px 16px; /* Slightly larger padding */
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    /* Ensure dropdown arrow is always visible by default */
+    appearance: menulist; 
+    -webkit-appearance: menulist;
+}
+/* Force dropdown to always appear below on most modern browsers */
+.contact-message-box select {
+    position: relative;
+    z-index: 10; /* Ensure it stays above other elements, although direct positioning is OS-dependent */
+}
+
+.contact-message-box input::placeholder,
+.contact-message-box textarea::placeholder {
+    color: var(--muted);
+    opacity: 0.8;
+}
+.contact-message-box input:focus,
+.contact-message-box select:focus,
+.contact-message-box textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+}
+
+/* Phone input group styling */
+.phone-input-group {
+    display: flex;
+    gap: 8px; /* Small gap between code display and phone input */
+}
+
+.country-code-display {
+    /* Style for the non-interactive code display box */
+    flex-shrink: 0;
+    width: 90px; /* Fixed width for the code box */
+    background: var(--bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 14px 8px 14px 16px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+    pointer-events: none; /* Make it non-interactive */
+}
+
+.phone-input-group input#phone {
+    /* Make the phone input take up the remaining space */
+    flex-grow: 1;
+    min-width: 0;
+    margin: 0; /* Remove default input margin */
+}
+
+/* Ensure inline row elements fill space */
+.form-row-inline {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media(max-width: 720px) {
+    .form-row-inline {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Button style matching the primary blue button seen in the reference image */
+.btn-primary {
+    background: #007bff; /* Bright blue color */
+    color: #ffffff;
+    border: 1px solid #007bff;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+    padding: 14px 20px;
+}
+.btn-primary:hover {
+    background: #0069d9;
+    border-color: #0062cc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 123, 255, 0.6);
+}
+
+/* Small button styling */
+.btn-small {
+    max-width: 200px; /* Make the button smaller */
+    padding: 12px 20px;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+/* Override existing button to use the new primary style for submission */
+#contactForm .btn-light {
+    display: none; /* Hide the old button */
+}
+
+/* Hide the unused generic contact-form class from old structure */
+.contact-form {
+    display: none;
+}
 
 /* Sub pages */
 .page-sub .sub-hero{padding:34px 18px;max-width:980px;margin:0 auto}
@@ -582,6 +752,7 @@ label{color:#cbd5e1;font-size:14px}
     .why-underline{margin-bottom:18px}
     .why-points li{gap:14px;margin-bottom:20px}
     .why-points li::before{width:10px;height:10px;margin-top:6px}
+    .why-points li strong{font-size:1rem;}
 }
 
 @media(max-width:640px){
@@ -596,6 +767,13 @@ label{color:#cbd5e1;font-size:14px}
     .vision-pill{font-size:0.85rem;padding:8px 16px}
     .about-heading{font-size:clamp(28px,7.5vw,42px)}
     .about-pill{width:54px;height:9px}
+
+    /* Contact Mobile Tweaks */
+    .contact-message-box{padding:24px 18px; gap:12px;}
+    .contact-h2-title {font-size: 1.4rem; margin-bottom: 6px;}
+    .contact-paragraph {font-size: 0.95rem; margin-bottom: 20px;}
+    
+    .btn-small { max-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce){
