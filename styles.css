@@ -162,70 +162,70 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
    ============== */
 
 .about{
-  padding-top: 24px;
-  padding-bottom: 32px;
+    padding-top: 24px;
+    padding-bottom: 32px;
 }
 
 /* Layout wrapper used in the HTML you requested */
 .about-grid{
-  display:grid;
-  grid-template-columns: 1fr 420px;
-  gap:34px;
-  align-items:start;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:34px;
+    align-items:start;
 }
 
 /* Left column */
 .about-heading{
-  font-weight:800;
-  font-size:clamp(40px,6.5vw,64px);
-  margin:0 0 10px;
-  line-height:1;
-  letter-spacing:-1px;
-  color:var(--text);
+    font-weight:800;
+    font-size:clamp(40px,6.5vw,64px);
+    margin:0 0 10px;
+    line-height:1;
+    letter-spacing:-1px;
+    color:var(--text);
 }
 .about-heading .accent{
-  color:var(--accent);
-  display:inline-block;
-  margin-left:6px;
+    color:var(--accent);
+    display:inline-block;
+    margin-left:6px;
 }
 
 .about-pill{
-  width:64px;
-  height:10px;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--accent), rgba(41,168,255,0.22));
-  box-shadow:0 6px 22px rgba(41,168,255,0.08);
-  margin:14px 0 22px;
+    width:64px;
+    height:10px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--accent), rgba(41,168,255,0.22));
+    box-shadow:0 6px 22px rgba(41,168,255,0.08);
+    margin:14px 0 22px;
 }
 
 .about-desc{
-  color:var(--muted);
-  font-size:1.04rem;
-  line-height:1.75;
-  max-width:68ch;
-  margin:0 0 6px;
+    color:var(--muted);
+    font-size:1.04rem;
+    line-height:1.75;
+    max-width:68ch;
+    margin:0 0 6px;
 }
 
 /* Right card */
 .about-card{
-  position:relative;
-  border-radius:14px;
-  padding:22px;
-  background:linear-gradient(180deg, rgba(12,14,16,0.92), rgba(255,255,255,0.01));
-  border:1px solid rgba(76,194,255,0.06);
-  box-shadow: 0 28px 64px rgba(3,6,8,0.6), inset 0 0 26px rgba(41,168,255,0.02);
-  min-width:300px;
-  overflow:hidden;
+    position:relative;
+    border-radius:14px;
+    padding:22px;
+    background:linear-gradient(180deg, rgba(12,14,16,0.92), rgba(255,255,255,0.01));
+    border:1px solid rgba(76,194,255,0.06);
+    box-shadow: 0 28px 64px rgba(3,6,8,0.6), inset 0 0 26px rgba(41,168,255,0.02);
+    min-width:300px;
+    overflow:hidden;
 }
 .about-card::before{
-  content:"";
-  position:absolute;
-  inset:-6% -10%;
-  background:radial-gradient(closest-side, rgba(41,168,255,0.12), rgba(0,0,0,0) 52%);
-  filter:blur(30px);
-  pointer-events:none;
-  z-index:0;
-  border-radius:18px;
+    content:"";
+    position:absolute;
+    inset:-6% -10%;
+    background:radial-gradient(closest-side, rgba(41,168,255,0.12), rgba(0,0,0,0) 52%);
+    filter:blur(30px);
+    pointer-events:none;
+    z-index:0;
+    border-radius:18px;
 }
 .card-body{position:relative;z-index:1}
 .card-body p{margin:0;color:var(--text);line-height:1.6;font-size:0.98rem}
@@ -242,148 +242,148 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 /* Shared Heading Styles */
 .vision-title,
 .mission-title {
-  text-align: center;
-  font-size: clamp(32px, 4vw, 44px);
-  font-weight: 800;
-  color: var(--text);
-  margin: 0 0 24px;
-  letter-spacing: -0.4px;
+    text-align: center;
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 800;
+    color: var(--text);
+    margin: 0 0 24px;
+    letter-spacing: -0.4px;
 }
 
 /* ========== VISION SECTION ========== */
 .vision-section {
-  text-align: center;
-  margin-bottom: 60px;
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 .vision-card {
-  background: linear-gradient(180deg, rgba(25,30,34,0.6), rgba(255,255,255,0.01));
-  border-radius: 18px;
-  border: 1px solid rgba(76,194,255,0.12);
-  box-shadow:
-    0 28px 80px rgba(0,0,0,0.55),
-    0 16px 50px rgba(76,194,255,0.06),
-    inset 0 0 40px rgba(76,194,255,0.02);
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 40px 36px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+    background: linear-gradient(180deg, rgba(25,30,34,0.6), rgba(255,255,255,0.01));
+    border-radius: 18px;
+    border: 1px solid rgba(76,194,255,0.12);
+    box-shadow:
+        0 28px 80px rgba(0,0,0,0.55),
+        0 16px 50px rgba(76,194,255,0.06),
+        inset 0 0 40px rgba(76,194,255,0.02);
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .vision-card::before {
-  content: "";
-  position: absolute;
-  inset: -20% -12%;
-  background: radial-gradient(closest-side, rgba(76,194,255,0.12), rgba(0,0,0,0) 60%);
-  filter: blur(36px);
-  opacity: 0.9;
-  pointer-events: none;
+    content:"";
+    position:absolute;
+    inset:-20% -12%;
+    background:radial-gradient(closest-side,rgba(76,194,255,0.12),rgba(0,0,0,0) 60%);
+    filter:blur(36px);
+    opacity:0.9;
+    pointer-events:none;
 }
 
 .vision-card p {
-  max-width: 68ch;
-  margin: 0 auto 22px;
-  color: var(--text);
-  line-height: 1.7;
-  font-size: 1.05rem;
+    max-width: 68ch;
+    margin: 0 auto 22px;
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 1.05rem;
 }
 
 /* Vision value pills */
 .vision-pill-group {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
 }
 .vision-pill {
-  padding: 10px 22px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid rgba(76,194,255,0.14);
-  color: var(--accent);
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: background .18s ease, transform .12s ease;
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid rgba(76,194,255,0.14);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background .18s ease, transform .12s ease;
 }
 .vision-pill:hover {
-  background: rgba(76,194,255,0.14);
-  transform: translateY(-3px);
+    background: rgba(76,194,255,0.14);
+    transform: translateY(-3px);
 }
 
 /* ========== MISSION SECTION ========== */
 .mission-section {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 20px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .mission-title {
-  margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .mission-intro {
-  max-width: 800px;
-  margin: 0 auto 28px;
-  color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 28px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
 }
 
 /* Mission grid (2x2 cards) */
 .mission-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 12px;
 }
 
 .mission-card {
-  background: linear-gradient(180deg, rgba(12,14,16,0.9), rgba(255,255,255,0.01));
-  border-radius: 18px;
-  padding: 34px 28px;
-  border: 1px solid rgba(76,194,255,0.08);
-  box-shadow:
-    0 18px 60px rgba(0,0,0,0.55),
-    inset 0 0 30px rgba(255,255,255,0.01);
-  transition: transform .18s ease, box-shadow .18s ease;
-  text-align: left;
-  min-height: 200px;
-  position: relative;
-  overflow: hidden;
+    background: linear-gradient(180deg, rgba(12,14,16,0.9), rgba(255,255,255,0.01));
+    border-radius: 18px;
+    padding: 34px 28px;
+    border: 1px solid rgba(76,194,255,0.08);
+    box-shadow:
+        0 18px 60px rgba(0,0,0,0.55),
+        inset 0 0 30px rgba(255,255,255,0.01);
+    transition: transform .18s ease, box-shadow .18s ease;
+    text-align: left;
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
 }
 
 .mission-card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 28px 90px rgba(76,194,255,0.08),
-    0 18px 60px rgba(0,0,0,0.6);
+    transform: translateY(-8px);
+    box-shadow:
+        0 28px 90px rgba(76,194,255,0.08),
+        0 18px 60px rgba(0,0,0,0.6);
 }
 
 .mission-num {
-  display: inline-block;
-  background: linear-gradient(180deg, rgba(76,194,255,0.14), rgba(76,194,255,0.06));
-  color: var(--accent);
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-weight: 800;
-  margin-bottom: 12px;
-  box-shadow: 0 6px 18px rgba(76,194,255,0.03) inset;
-  font-size: 0.95rem;
+    display: inline-block;
+    background: linear-gradient(180deg, rgba(76,194,255,0.14), rgba(76,194,255,0.06));
+    color: var(--accent);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    box-shadow: 0 6px 18px rgba(76,194,255,0.03) inset;
+    font-size: 0.95rem;
 }
 .mission-card h4 {
-  margin: 6px 0 12px;
-  font-size: 1.1rem;
-  color: var(--text);
+    margin: 6px 0 12px;
+    font-size: 1.1rem;
+    color: var(--text);
 }
 .mission-card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.6;
-  font-size: 0.98rem;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 0.98rem;
 }
 
 /* Ticker */
@@ -398,34 +398,34 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 /* WHY CHOOSE RNS GROUPS (updated styles) */
 /* WHY CHOOSE RNS GROUPS (updated styles) */
 .why{
-  position:relative;
-  padding:50px 18px;
-  overflow:visible;
+    position:relative;
+    padding:50px 18px;
+    overflow:visible;
 }
 
 /* subtle right-side glow matching site aesthetic */
 .why::after{
-  content:"";
-  position:absolute;
-  right:0;
-  top:15%;
-  width:45%;
-  height:70%;
-  pointer-events:none;
-  background:radial-gradient(closest-side,rgba(41,168,255,0.08),transparent 55%);
-  filter:blur(40px);
-  opacity:.9;
+    content:"";
+    position:absolute;
+    right:0;
+    top:15%;
+    width:45%;
+    height:70%;
+    pointer-events:none;
+    background:radial-gradient(closest-side,rgba(41,168,255,0.08),transparent 55%);
+    filter:blur(40px);
+    opacity:.9;
 }
 
 /* 1. HEADING ALIGNMENT FIX: Matched to the .about-heading size */
 .why h2{
-  font-weight:800;
-  /* Match the same large clamp size as .about-heading */
-  font-size:clamp(40px,6.5vw,64px); 
-  margin:0;
-  line-height:1.1; /* Slightly looser line-height than the dense 1 used on about-heading */
-  letter-spacing:-1px; 
-  color:var(--text);
+    font-weight:800;
+    /* Match the same large clamp size as .about-heading */
+    font-size:clamp(40px,6.5vw,64px); 
+    margin:0;
+    line-height:1.1; /* Slightly looser line-height than the dense 1 used on about-heading */
+    letter-spacing:-1px; 
+    color:var(--text);
 }
 .why h2 .accent{
     color:var(--accent);
@@ -433,56 +433,56 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 
 /* small underline accent */
 .why-underline{
-  width:70px;
-  height:6px;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--accent),rgba(41,168,255,0.2));
-  box-shadow:0 8px 24px rgba(41,168,255,0.08);
-  margin:14px 0 28px;
+    width:70px;
+    height:6px;
+    border-radius:999px;
+    background:linear-gradient(90deg,var(--accent),rgba(41,168,255,0.2));
+    box-shadow:0 8px 24px rgba(41,168,255,0.08);
+    margin:14px 0 28px;
 }
 
 /* Points list — align with heading start, stable, clean layout */
 .why-points{
-  list-style:none;
-  margin:0;
-  padding:0;
-  max-width:900px;
+    list-style:none;
+    margin:0;
+    padding:0;
+    max-width:900px;
 }
 
 /* Mobile Responsive Alignment: Uses flex for consistent bullet/text alignment */
 .why-points li{
-  display:flex;
-  align-items:flex-start;
-  gap:18px;
-  margin-bottom:26px;
-  color:var(--muted);
-  line-height:1.6;
-  font-size:1.02rem; /* Desktop font size */
-  padding:0;
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    margin-bottom:26px;
+    color:var(--muted);
+    line-height:1.6;
+    font-size:1.02rem; /* Desktop font size */
+    padding:0;
 }
 
 /* bullet dot as inline element so it flows with the text */
 .why-points li::before{
-  content:"";
-  display:inline-block;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  background:var(--accent);
-  box-shadow:0 4px 20px rgba(76,194,255,0.12),inset 0 2px 6px rgba(0,0,0,0.25);
-  margin-top:6px;
-  flex:0 0 12px;
+    content:"";
+    display:inline-block;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 4px 20px rgba(76,194,255,0.12),inset 0 2px 6px rgba(0,0,0,0.25);
+    margin-top:6px;
+    flex:0 0 12px;
 }
 
 /* Fix: Setting display: inline ensures the descriptive text flows immediately 
    after the bold title, achieving the desired single-line look. 
 */
 .why-points li strong{
-  display:inline; 
-  color:var(--text);
-  font-weight:700;
-  margin:0;
-  font-size:1.05rem;
+    display:inline; 
+    color:var(--text);
+    font-weight:700;
+    margin:0;
+    font-size:1.05rem;
 }
 
 /* final item spacing tweak */
@@ -508,8 +508,9 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     .why-points li::before{width:10px;height:10px;margin-top:6px}
     .why-points li strong{font-size:1rem;}
 }
-/* For very small screens to prevent title text from being too big */
+
 @media(max-width:640px){
+    /* The Why Choose Us and About Us sections use this block effectively */
     .why h2{font-size:1.8rem;}
 }
 
@@ -572,18 +573,18 @@ label{color:#cbd5e1;font-size:14px}
 
 /* Glowing accent border for the message box (optional, matches About Card glow) */
 .contact-message-box::before{
-    content: "";
-    position: absolute;
-    inset: -6% -10%;
-    background: radial-gradient(closest-side, rgba(41,168,255,0.12), rgba(0,0,0,0) 52%);
-    filter: blur(30px);
-    pointer-events: none;
-    z-index: 0;
-    border-radius: 22px;
+    content:"";
+    position:absolute;
+    inset:-6% -10%;
+    background:radial-gradient(closest-side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
+    filter:blur(30px);
+    pointer-events:none;
+    z-index:0;
+    border-radius:22px;
 }
 .contact-message-box > * {
-    position: relative; /* Ensure form elements are above the pseudo-element glow */
-    z-index: 1;
+    position:relative; /* Ensure form elements are above the pseudo-element glow */
+    z-index:1;
 }
 
 /* Form element base styling override for the contact form to match the image */
@@ -652,7 +653,7 @@ label{color:#cbd5e1;font-size:14px}
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
-@media(max-width: 720px) {
+@media(min-width: 720px) {
     .form-row-inline {
         grid-template-columns: 1fr;
     }
@@ -756,6 +757,60 @@ label{color:#cbd5e1;font-size:14px}
 }
 
 @media(max-width:640px){
+    /* --- KEY RESPONSIVE FIXES FOR CONTACT SECTION --- */
+    
+    /* 1. Prioritize contact section padding to match About/Why sections. 
+       We must explicitly target the contact section and use !important to override the global .content-narrow rule.
+       This ensures the desired 30px padding is applied ONLY to the Contact Us section for alignment. */
+    .contact .content-narrow {
+        /* Set uniform padding of 30px left/right to PRIORTIZE for this section only */
+        padding: 26px 30px !important; 
+        max-width: 100%;
+    }
+    
+    /* Global narrow content padding for all other sections (About Us, Why Choose Us) */
+    .content-narrow {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+
+    /* Ensure form and heading text wraps correctly */
+    .contact-h2-title {
+        font-size: 1.4rem; 
+        margin-bottom: 6px;
+    }
+    .contact-paragraph {
+        font-size: 0.95rem; 
+        margin-bottom: 20px;
+    }
+    /* Adjust about-heading size on the smallest screens (This targets Contact Us / About Us title consistency) */
+    .about-heading {
+        font-size: clamp(28px, 9vw, 42px);
+    }
+
+    /* Ensure form items stretch fully and don't rely on fixed desktop width */
+    .contact-message-box {
+        /* Reduce inner form padding to allow more space for inputs */
+        padding: 24px 20px; 
+        gap: 12px;
+    }
+    
+    /* Ensure the phone number section scales correctly */
+    .country-code-display {
+        width: 60px; /* Make code display narrower on mobile */
+        padding: 14px 8px;
+    }
+    .phone-input-group {
+        gap: 6px;
+    }
+    
+    .btn-small { 
+        max-width: 100%; /* Button stretches full width */
+    }
+    /* --- END KEY RESPONSIVE FIXES --- */
+
+
     .btn{padding:11px 14px}
     .footer-inner{padding:20px 14px}
     .split{padding:0 14px 32px}
@@ -765,15 +820,8 @@ label{color:#cbd5e1;font-size:14px}
     .mission-card h4{font-size:1.05rem}
     .feature-icon{width:54px;height:54px}
     .vision-pill{font-size:0.85rem;padding:8px 16px}
-    .about-heading{font-size:clamp(28px,7.5vw,42px)}
     .about-pill{width:54px;height:9px}
-
-    /* Contact Mobile Tweaks */
-    .contact-message-box{padding:24px 18px; gap:12px;}
-    .contact-h2-title {font-size: 1.4rem; margin-bottom: 6px;}
-    .contact-paragraph {font-size: 0.95rem; margin-bottom: 20px;}
     
-    .btn-small { max-width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce){
