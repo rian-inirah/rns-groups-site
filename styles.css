@@ -221,7 +221,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     content:"";
     position:absolute;
     inset:-6% -10%;
-    background:radial-gradient(closest-side, rgba(41,168,255,0.12), rgba(0,0,0,0) 52%);
+    background:radial-gradient(closest-side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
     filter:blur(30px);
     pointer-events:none;
     z-index:0;
@@ -272,7 +272,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     overflow: hidden;
 }
 
-.vision-card::before {
+.vision-card::before{
     content:"";
     position:absolute;
     inset:-20% -12%;
@@ -508,9 +508,8 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     .why-points li::before{width:10px;height:10px;margin-top:6px}
     .why-points li strong{font-size:1rem;}
 }
-
+/* For very small screens to prevent title text from being too big */
 @media(max-width:640px){
-    /* The Why Choose Us and About Us sections use this block effectively */
     .why h2{font-size:1.8rem;}
 }
 
@@ -700,14 +699,158 @@ label{color:#cbd5e1;font-size:14px}
 .split article{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--line);padding:18px;border-radius:14px}
 
 /* Footer */
-.site-footer{border-top:1px solid var(--line);margin-top:40px}
-.footer-inner{display:grid;gap:18px;grid-template-columns:1fr;max-width:1200px;margin:0 auto;padding:24px 18px}
-@media(min-width:900px){.footer-inner{grid-template-columns:1.1fr .7fr 1fr;align-items:start}}
-.footer-logo{height:28px;margin-bottom:8px}
-.f-nav{display:flex;gap:12px;flex-wrap:wrap}
-.f-nav a{color:#c9ced4}
-.f-contact p{margin:6px 0;color:#c9ced4}
-.f-bottom{text-align:center;border-top:1px solid var(--line);padding:10px;color:#98a2ad}
+/* ==================================
+   Footer Specific Styling (Final)
+   ================================== */
+.site-footer{
+    border-top:1px solid var(--line);
+    margin-top:40px;
+    background:var(--bg-elev); 
+    padding-bottom: 0;
+}
+.footer-inner{
+    display:grid;
+    gap:24px; 
+    grid-template-columns:1fr;
+    max-width:1200px;
+    padding:40px 18px 20px;
+    align-items:start;
+    margin:0 auto;
+}
+@media(min-width:900px){
+    .footer-inner{grid-template-columns:1.2fr .7fr 1fr;padding:40px 18px 20px;}
+}
+
+/* Footer Brand/Logo Column */
+.f-brand{
+    display: flex;
+    flex-direction: column;
+}
+.footer-logo{
+    /* 1. Bigger Logo */
+    height:42px; 
+    width:auto;
+    object-fit:contain;
+    margin-bottom:12px;
+}
+.f-brand p{
+    color:var(--muted);
+    font-size: 0.9rem;
+    margin:6px 0;
+    max-width: 300px;
+}
+
+/* Footer Navigation */
+.f-nav{
+    display:flex;
+    flex-direction: column;
+    gap:8px;
+}
+.f-nav a{
+    color:#c9ced4;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 4px 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+/* 2. Nav Link Hover Effect */
+.f-nav a:hover{
+    color:var(--accent);
+    transform: translateX(4px);
+}
+
+/* Footer Contact Info */
+.f-contact{
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+.f-contact p{
+    margin:0; 
+    color:#c9ced4;
+    font-size: 0.9rem;
+    display: flex; 
+    align-items: center; 
+}
+/* Address line fix: Use flex-start to align icon to the top of the multi-line text block */
+.f-contact p.address-paragraph {
+    align-items: flex-start;
+}
+.f-contact a {
+    color: var(--muted);
+    transition: color 0.2s;
+    line-height: 1.4;
+    padding-left: 8px; 
+}
+.f-contact a:hover {
+    color: var(--accent);
+}
+
+/* 3. Social Media Icons (New) */
+.f-social {
+    /* FIX: Ensure social icons align horizontally */
+    display: flex; 
+    gap: 12px;
+    margin-top: 15px;
+}
+.f-social a {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #111111; /* Black circle background */
+    transition: background 0.2s, transform 0.2s;
+}
+.f-social a:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+/* Social Icons (size and color) */
+.f-social .social-icon {
+    font-size: 18px; /* Size for Facebook, X, etc. glyph */
+    color: white; /* White glyph color */
+}
+
+/* Contact Icons (Email, Phone, Address) - Size and Background */
+.f-contact .contact-icon {
+    /* KEY FIX: Standardize Contact Icon size to match Social Icons */
+    width: 36px; 
+    height: 36px;
+    min-width: 36px; /* Prevents shrinking */
+    background: #111111; /* Black circle background */
+    border-radius: 50%;
+    
+    /* Center the Font Awesome glyph inside the new circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Style for the glyph */
+    font-size: 16px; /* Font size for the Mail/Phone/Map glyph */
+    color: white; 
+    margin-right: 8px; 
+    flex-shrink: 0; /* Prevents icon from shrinking on wrapping text */
+}
+
+/* Final Address Text Alignment Fix */
+.f-contact p.address-paragraph .address-text {
+    /* Overrides the default inline-block behavior of <span>/<a>,
+       ensuring the text block aligns correctly to the top of the paragraph. */
+    display: block; 
+}
+
+
+.f-bottom{
+    text-align:center;
+    /* FIX: Remove the line above the copyright text */
+    border-top: none !important; 
+    padding:10px 18px;
+    color:#98a2ad;
+    font-size: 0.85rem;
+}
+/* End Footer Specific Styling */
+
 
 /* WhatsApp FAB */
 .whatsapp-fab{position:fixed;right:16px;bottom:16px;border-radius:14px;width:56px;height:56px;display:grid;place-items:center;z-index:70;animation:jump 1.6s ease-in-out infinite;background:transparent}
@@ -754,27 +897,26 @@ label{color:#cbd5e1;font-size:14px}
     .why-points li{gap:14px;margin-bottom:20px}
     .why-points li::before{width:10px;height:10px;margin-top:6px}
     .why-points li strong{font-size:1rem;}
+    
+    /* Footer responsiveness for smaller screens */
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px 20px 10px;
+    }
 }
 
 @media(max-width:640px){
     /* --- KEY RESPONSIVE FIXES FOR CONTACT SECTION --- */
     
-    /* 1. Prioritize contact section padding to match About/Why sections. 
-       We must explicitly target the contact section and use !important to override the global .content-narrow rule.
-       This ensures the desired 30px padding is applied ONLY to the Contact Us section for alignment. */
-    .contact .content-narrow {
+    /* 1. Standardize and Prioritize padding for ALL mobile content (.about, .why, .contact) */
+    /* Target the global content wrapper for consistent padding */
+    .content-narrow {
         /* Set uniform padding of 30px left/right to PRIORTIZE for this section only */
         padding: 26px 30px !important; 
         max-width: 100%;
     }
     
-    /* Global narrow content padding for all other sections (About Us, Why Choose Us) */
-    .content-narrow {
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-
-
     /* Ensure form and heading text wraps correctly */
     .contact-h2-title {
         font-size: 1.4rem; 
@@ -791,14 +933,13 @@ label{color:#cbd5e1;font-size:14px}
 
     /* Ensure form items stretch fully and don't rely on fixed desktop width */
     .contact-message-box {
-        /* Reduce inner form padding to allow more space for inputs */
         padding: 24px 20px; 
         gap: 12px;
     }
     
     /* Ensure the phone number section scales correctly */
     .country-code-display {
-        width: 60px; /* Make code display narrower on mobile */
+        width: 60px; 
         padding: 14px 8px;
     }
     .phone-input-group {
@@ -806,7 +947,7 @@ label{color:#cbd5e1;font-size:14px}
     }
     
     .btn-small { 
-        max-width: 100%; /* Button stretches full width */
+        max-width: 100%;
     }
     /* --- END KEY RESPONSIVE FIXES --- */
 
