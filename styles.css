@@ -39,6 +39,7 @@ button,summary{touch-action:manipulation}
    Header & Brand tweaks
    ======================== */
 .site-header{
+    /* The navigation bar itself */
     position:sticky;
     top:20px;
     z-index:50;
@@ -56,7 +57,14 @@ button,summary{touch-action:manipulation}
     overflow:visible;
 }
 
-.brand{display:flex;align-items:center;gap:16px;text-decoration:none}
+.brand{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    text-decoration:none;
+    /* Base positioning reset for animation */
+    transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
+}
 
 .brand-logo-wrapper{
     height:44px;
@@ -101,6 +109,38 @@ button,summary{touch-action:manipulation}
     color:var(--accent);
     letter-spacing:1.4px;
 }
+
+/* --- HEADER ALIGNMENT (Final Working Desktop Behavior) --- */
+@media(min-width: 900px) {
+    .site-header {
+        /* Standard space-between layout for desktop */
+        justify-content: space-between; 
+        padding-left: 18px;
+        max-width: 1160px;
+    }
+    
+    .brand {
+        /* Standard static position, logo is visible here */
+        position: static;
+        z-index: 55;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .brand-logo-wrapper {
+        /* Logo visible inside header */
+        visibility: visible;
+        position: static;
+        width: auto;
+        height: 44px; 
+    }
+    
+    .brand-logo {
+        transform: scale(1.5); /* Maintain prominence */
+    }
+}
+/* ----------------------------------------------------------------- */
+
 
 /* Navigation */
 .site-nav{display:flex;gap:18px;align-items:center}
@@ -221,7 +261,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     content:"";
     position:absolute;
     inset:-6% -10%;
-    background:radial-gradient(closest-side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
+    background:radial-gradient(closest_side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
     filter:blur(30px);
     pointer-events:none;
     z-index:0;
@@ -247,7 +287,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     font-weight: 800;
     color: var(--text);
     margin: 0 0 24px;
-    letter-spacing: -0.4px;
+    letter-spacing:-0.4px;
 }
 
 /* ========== VISION SECTION ========== */
@@ -276,10 +316,10 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     content:"";
     position:absolute;
     inset:-20% -12%;
-    background:radial-gradient(closest-side,rgba(76,194,255,0.12),rgba(0,0,0,0) 60%);
+    background:radial-gradient(closest_side,rgba(41,168,255,0.12),rgba(0,0,0,0) 60%);
     filter:blur(36px);
-    opacity:0.9;
     pointer-events:none;
+    opacity:0.9;
 }
 
 .vision-card p {
@@ -382,13 +422,13 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 .mission-card p {
     margin: 0;
     color: var(--muted);
-    line-height: 1.6;
     font-size: 0.98rem;
+    line-height: 1.6;
 }
 
 /* Ticker */
 .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:22px}
-.ticker-track{display:inline-flex;gap:34px;white-space:nowrap;animation:ticker 24s linear infinite;padding:12px 0;color:#c8d1da}
+.ticker-track{display:inline-flex;gap:34px;white-space:nowrap;animation:ticker 24s linear infinite;padding:12px 0;animation-duration: 24s;}
 .ticker:hover .ticker-track{animation-play-state:paused}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -412,12 +452,12 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     width:45%;
     height:70%;
     pointer-events:none;
-    background:radial-gradient(closest-side,rgba(41,168,255,0.08),transparent 55%);
+    background:radial-gradient(closest_side,rgba(41,168,255,0.08),transparent 55%);
     filter:blur(40px);
     opacity:.9;
 }
 
-/* 1. HEADING ALIGNMENT FIX: Matched to the .about-heading size */
+/* 1. HEADING ALIGNMENT FIX: Matched to the .about_heading size */
 .why h2{
     font-weight:800;
     /* Match the same large clamp size as .about-heading */
@@ -575,7 +615,7 @@ label{color:#cbd5e1;font-size:14px}
     content:"";
     position:absolute;
     inset:-6% -10%;
-    background:radial-gradient(closest-side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
+    background:radial-gradient(closest_side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
     filter:blur(30px);
     pointer-events:none;
     z-index:0;
@@ -634,10 +674,12 @@ label{color:#cbd5e1;font-size:14px}
     padding: 14px 8px 14px 16px;
     color: var(--muted);
     font-size: 0.95rem;
-    display: flex;
-    align-items: center;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
     pointer-events: none; /* Make it non-interactive */
+    
+    /* Ensure content centers vertically */
+    display: flex;
+    align-items: center;
 }
 
 .phone-input-group input#phone {
@@ -652,12 +694,7 @@ label{color:#cbd5e1;font-size:14px}
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
-@media(min-width: 720px) {
-    .form-row-inline {
-        grid-template-columns: 1fr;
-    }
-}
-
+@media(min-width: 720px){.form-row-inline{grid-template-columns:1fr}}
 
 /* Button style matching the primary blue button seen in the reference image */
 .btn-primary {
@@ -728,8 +765,8 @@ label{color:#cbd5e1;font-size:14px}
 }
 .footer-logo{
     /* 1. Bigger Logo */
-    height:42px; 
-    width:auto;
+    height:80px; 
+    width: 100px;;
     object-fit:contain;
     margin-bottom:12px;
 }
@@ -787,8 +824,9 @@ label{color:#cbd5e1;font-size:14px}
 }
 
 /* 3. Social Media Icons (New) */
+
+/* FIX 1: Social Media Icons (Make Horizontal) */
 .f-social {
-    /* FIX: Ensure social icons align horizontally */
     display: flex; 
     gap: 12px;
     margin-top: 15px;
@@ -833,18 +871,27 @@ label{color:#cbd5e1;font-size:14px}
     flex-shrink: 0; /* Prevents icon from shrinking on wrapping text */
 }
 
-/* Final Address Text Alignment Fix */
-.f-contact p.address-paragraph .address-text {
-    /* Overrides the default inline-block behavior of <span>/<a>,
-       ensuring the text block aligns correctly to the top of the paragraph. */
+/* FIX 3: Specific alignment for the Address text block */
+.f-contact p.address-paragraph {
+    align-items: flex-start; /* Aligns icon to the top of the line */
+}
+.f-contact p.address-paragraph a.footer-link {
     display: block; 
+    /* Adjust padding/margin to vertically center the block of text relative to the icon */
+    padding-top: 10px; 
+    margin-top: -10px; 
+}
+
+/* FIX 4: Corrected vertical alignment for the single-line Email and Phone text */
+.f-contact p:not(.address-paragraph) {
+    align-items: center; /* Ensures the icon and single-line text are centrally aligned */
 }
 
 
 .f-bottom{
     text-align:center;
     /* FIX: Remove the line above the copyright text */
-    border-top: none !important; 
+    border-top: none; 
     padding:10px 18px;
     color:#98a2ad;
     font-size: 0.85rem;
@@ -854,7 +901,7 @@ label{color:#cbd5e1;font-size:14px}
 
 /* WhatsApp FAB */
 .whatsapp-fab{position:fixed;right:16px;bottom:16px;border-radius:14px;width:56px;height:56px;display:grid;place-items:center;z-index:70;animation:jump 1.6s ease-in-out infinite;background:transparent}
-.whatsapp-icon{width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
+.whatsapp-icon{width:48px;height:48px;object-fit:contain;filter: drop-shadow(0 4px 12px rgba(0,0,0,.5))}
 @keyframes jump{0%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}60%{transform:translateY(-3px)}}
 
 /* Scroll animations */
@@ -866,6 +913,20 @@ label{color:#cbd5e1;font-size:14px}
 [data-animate="slide-left"]{transform:translateX(-18px)}
 
 @media(max-width:900px){
+    /* Revert desktop fixed logo setup for mobile */
+    .brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-left: 0;
+    }
+    .brand-logo-wrapper {
+        position: static;
+        width: auto;
+        height: 34px; /* Default mobile size */
+        visibility: visible;
+    }
+
     .site-header{margin:8px 12px 0;max-width:calc(100% - 24px);top:14px;padding:8px 14px}
     .brand-logo-wrapper{height:34px}
     .brand-logo{height:34px}
@@ -910,7 +971,6 @@ label{color:#cbd5e1;font-size:14px}
     /* --- KEY RESPONSIVE FIXES FOR CONTACT SECTION --- */
     
     /* 1. Standardize and Prioritize padding for ALL mobile content (.about, .why, .contact) */
-    /* Target the global content wrapper for consistent padding */
     .content-narrow {
         /* Set uniform padding of 30px left/right to PRIORTIZE for this section only */
         padding: 26px 30px !important; 
