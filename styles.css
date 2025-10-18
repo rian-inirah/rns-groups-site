@@ -393,6 +393,10 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* WHY CHOOSE RNS GROUPS (updated styles) */
+/* WHY CHOOSE RNS GROUPS (updated styles) */
+/* WHY CHOOSE RNS GROUPS (updated styles) */
+/* WHY CHOOSE RNS GROUPS (updated styles) */
+/* WHY CHOOSE RNS GROUPS (updated styles) */
 .why{
   position:relative;
   padding:50px 18px;
@@ -413,13 +417,18 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
   opacity:.9;
 }
 
-/* reduced heading size so it doesn't dominate */
+/* 1. HEADING ALIGNMENT FIX: Matched to the .about-heading size */
 .why h2{
   font-weight:800;
-  font-size:clamp(28px,4.2vw,42px); /* reduced per request */
+  /* Match the same large clamp size as .about-heading */
+  font-size:clamp(40px,6.5vw,64px); 
   margin:0;
-  letter-spacing:-.6px;
+  line-height:1.1; /* Slightly looser line-height than the dense 1 used on about-heading */
+  letter-spacing:-1px; 
   color:var(--text);
+}
+.why h2 .accent{
+    color:var(--accent);
 }
 
 /* small underline accent */
@@ -432,7 +441,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
   margin:14px 0 28px;
 }
 
-/* Points list — align with heading start, stable (no slant), clean layout */
+/* Points list — align with heading start, stable, clean layout */
 .why-points{
   list-style:none;
   margin:0;
@@ -440,16 +449,16 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
   max-width:900px;
 }
 
-/* each point is a flow item: bullet (pseudo) + content in the normal flow so alignment is reliable */
+/* Mobile Responsive Alignment: Uses flex for consistent bullet/text alignment */
 .why-points li{
   display:flex;
-  align-items:flex-start;          /* keep bullet vertically aligned with top of text block */
+  align-items:flex-start;
   gap:18px;
   margin-bottom:26px;
   color:var(--muted);
   line-height:1.6;
-  font-size:1.02rem;
-  padding:0;                        /* no extra left padding — aligns to heading start */
+  font-size:1.02rem; /* Desktop font size */
+  padding:0;
 }
 
 /* bullet dot as inline element so it flows with the text */
@@ -461,39 +470,48 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
   border-radius:50%;
   background:var(--accent);
   box-shadow:0 4px 20px rgba(76,194,255,0.12),inset 0 2px 6px rgba(0,0,0,0.25);
-  margin-top:6px;                   /* nudges bullet to visually align with the first line of the content */
+  margin-top:6px;
   flex:0 0 12px;
 }
 
-/* title line in each item */
+/* Fix: Setting display: inline ensures the descriptive text flows immediately 
+   after the bold title, achieving the desired single-line look. 
+*/
 .why-points li strong{
-  display:block;
+  display:inline; 
   color:var(--text);
   font-weight:700;
-  margin:0 0 6px;
+  margin:0;
   font-size:1.05rem;
 }
-
-/* sub-line (description) uses an en-dash look but not slanted; keep normal font-style */
-.why-points li em, .why-points li p{
-  margin:0;
-  font-style:normal;                /* ensure not italic/slanted */
-  color:var(--muted);
-  display:block;
-  padding-left:0;
-}
-
-/* remove hover translate (keeps layout steady) */
-.why-points li:hover{transform:none}
 
 /* final item spacing tweak */
 .why-points li:last-child{margin-bottom:0}
 
-/* Contact / other existing styles left in place below */
-
-/* Why fallback older feature-list kept for compatibility (unused by above) */
-.feature-list{display:grid;gap:12px;margin:0;padding:0}
-.feature-list li{list-style:none;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid var(--line);padding:14px 16px;border-radius:12px}
+/* Media Query Overrides for Mobile */
+@media(max-width:900px){
+    .why{padding:34px 14px}
+    .why::after{display:none}
+    
+    /* Reverting h2 size to match mobile viewport size in original code to look professional */
+    .why h2{font-size:clamp(24px,6vw,32px); letter-spacing:-0.4px} 
+    
+    .why-underline{margin-bottom:18px}
+    
+    /* 2. MOBILE READABILITY IMPROVEMENT: Reduced the base list font size slightly */
+    .why-points li{
+        gap:14px;
+        margin-bottom:20px;
+        font-size: 0.95rem; /* Smaller size for better fit on mobile */
+        line-height: 1.55;
+    }
+    .why-points li::before{width:10px;height:10px;margin-top:6px}
+    .why-points li strong{font-size:1rem;}
+}
+/* For very small screens to prevent title text from being too big */
+@media(max-width:640px){
+    .why h2{font-size:1.8rem;}
+}
 
 /* Contact */
 .contact-form{display:grid;gap:12px;margin-top:14px}
