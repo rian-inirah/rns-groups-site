@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="page-sub">
@@ -48,52 +49,114 @@
     <div id="overlay" class="overlay" aria-hidden="true"></div>
 
     <main>
-        <section class="sub-hero">
-            <h1>Our Export Expertise: Supplying India's Finest</h1>
-            <p>We specialize in high‑demand commodities recognized globally for their exceptional quality and geographical heritage. We source directly from the most fertile regions, guaranteeing authenticity and freshness in every shipment.</p>
+        <section class="sub-hero product-page-header">
+            <div class="content-narrow-header">
+                <h1>Our Export <strong>Expertise</strong>: Supplying India's Finest</h1>
+                <p>We specialize in high-demand commodities, focusing on those recognized globally for their exceptional quality and geographical heritage. We source directly from the most fertile regions, guaranteeing authenticity and freshness in every shipment.</p>
+            </div>
         </section>
 
-        <section class="split">
-            <article>
-                <h2>Semi‑Husked Coconuts</h2>
-                <p><strong>The Pollachi Standard:</strong> Sourced directly from Pollachi, Tamil Nadu, the Coconut Capital of India. Renowned for naturally sweet water, thick kernel, and excellent shelf‑life.</p>
-            </article>
-            <article>
-                <h2>Coco Peat</h2>
-                <p><strong>Pollachi's Sustainable Solution:</strong> Derived from rich coir husks. This low‑EC, sustainable growing medium is trusted by hydroponics and horticulture farms globally for superior water retention.</p>
-            </article>
-            <article>
-                <h2>Dried Red Chillies</h2>
-                <p><strong>Guntur's Signature Spice:</strong> Sun‑dried chillies straight from Guntur, Andhra Pradesh—high‑color, high‑pungency. Ideal for grinding and processing.</p>
-            </article>
-            <article>
-                <h2>Red Onions</h2>
-                <p><strong>Nashik's Premium Crop:</strong> Firm texture, excellent flavor, and superior storage properties for export.</p>
-            </article>
+        <section class="products-grid-wrapper four-col-grid" data-animate="rise">
+            <div class="products-grid content-narrow">
+                
+                <article class="product-card">
+                    <img src="coconut.jpg" alt="Semi-Husked Coconuts" class="product-img">
+                    <div class="product-body">
+                        <h2><span class="bullet-point"></span>Semi-Husked Coconuts</h2>
+                        <p class="product-subhead">The Pollachi Standard:</p>
+                        <p class="product-focus">
+                            Sourced directly from Pollachi, Tamil Nadu, the "Coconut Capital of India." Renowned for their <strong class="highlight">naturally sweet water, thick kernel, and excellent shelf-life</strong>.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img src="coco peat.jpg" alt="Coco Peat" class="product-img">
+                    <div class="product-body">
+                        <h2><span class="bullet-point"></span>Coco Peat</h2>
+                        <p class="product-subhead">Pollachi's Sustainable Solution:</p>
+                        <p class="product-focus">
+                            Derived from the rich coir husks of Pollachi. This <strong class="highlight">low-EC, sustainable growing medium</strong> is trusted by hydroponics and horticulture farms globally for its <strong class="highlight">superior water retention</strong>.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img src="chillies.jpg" alt="Dried Red Chillies" class="product-img">
+                    <div class="product-body">
+                        <h2><span class="bullet-point"></span>Dried Red Chillies</h2>
+                        <p class="product-subhead">Guntur's Signature Spice:</p>
+                        <p class="product-focus">
+                            We offer <strong class="highlight">sun-dried chillies</strong> straight from Guntur, Andhra Pradesh, the world-famous hub for <strong class="highlight">high-color and high-pungency red chillies</strong>. Ideal for grinding and processing.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img src="onions.jpg" alt="Red Onions" class="product-img">
+                    <div class="product-body">
+                        <h2><span class="bullet-point"></span>Red Onions</h2>
+                        <p class="product-subhead">Nashik's Premium Crop:</p>
+                        <p class="product-focus">
+                            Sourced from Nashik, Maharashtra, known for producing the most desired red onions with <strong class="highlight">excellent flavor, firm texture, and the best storage properties</strong> for export.
+                        </p>
+                    </div>
+                </article>
+            </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" data-animate="fade-up">
         <div class="footer-inner">
             <div class="f-brand">
                 <img src="logo.png" alt="RNS Groups" class="footer-logo">
-                <p>India’s finest produce for world markets.</p>
+                <p>RNS Groups connects Indian agri‑excellence with global demand and brings premium produce to India.</p>
+                
+                <div class="f-social">
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa fa-facebook social-icon"></i>
+                    </a>
+                    <a href="#" aria-label="X (Twitter)">
+                        <i class="fa fa-twitter social-icon"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa fa-instagram social-icon"></i> 
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <i class="fa fa-youtube social-icon"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="fa fa-linkedin social-icon"></i>
+                    </a>
+                </div>
             </div>
             <nav class="f-nav">
                 <a href="index.html">Home</a>
                 <a href="imports.html">Import</a>
-                <a href="exports.html" class="is-active">Export</a>
+                <a href="exports.html">Export</a>
                 <a href="index.html#contact">Contact</a>
             </nav>
+            
             <div class="f-contact">
-                <p>Email: <a href="mailto:info@rnsgroups.in">info@rnsgroups.in</a></p>
-                <p>WhatsApp / Direct: <a href="https://wa.me/916382494303" target="_blank" rel="noopener">+91 63824 94303</a></p>
                 <p>
-                    Address: <a href="https://www.google.com/maps/search/?api=1&query=28%2C+Kandhaswamy+Mudhaliyar+St%2C+Vettaikaranpudur%2C+Pollachi%2C+Coimbatore%2C+India%2C+642129" target="_blank" rel="noopener">28, Kandhaswamy Mudhaliyar St, Vettaikaranpudur, Pollachi, Coimbatore, India, 642129</a>
+                    <i class="fa fa-envelope contact-icon"></i>
+                    Email: <a href="mailto:info@rnsgroups.in" class="footer-link">info@rnsgroups.in</a>
+                </p>
+                <p>
+                    <i class="fa fa-phone contact-icon"></i>
+                    Phone: <a href="https://wa.me/916382494303" target="_blank" rel="noopener" class="footer-link">+91 63824 94303</a>
+                </p>
+                <p class="address-paragraph">
+                    <i class="fa fa-map-marker contact-icon"></i>Location:
+                    <a href="https://www.google.com/maps/search/?api=1&query=28%2C+Kandhaswamy+Mudhaliyar+St%2C+Vettaikaranpudur%2C+Pollachi%2C+Coimbatore%2C+India%2C+642129" target="_blank" rel="noopener" class="footer-link address-link">
+                        28, Kandhaswamy Mudhaliyar St,<br>
+                        Vettaikaranpudur, Pollachi, Coimbatore,<br>
+                        India, 642129
+                    </a>
                 </p>
             </div>
         </div>
-        <div class="f-bottom">© <span id="year"></span> RNS Groups.</div>
+        <div class="f-bottom">© <span id="year"></span> RNS Groups. All rights reserved.</div>
     </footer>
 
     <a href="https://wa.me/916382494303" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat on WhatsApp">

@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="page-sub">
@@ -48,48 +49,107 @@
     <div id="overlay" class="overlay" aria-hidden="true"></div>
 
     <main>
-        <section class="sub-hero">
-            <h1>Our Import Strength: Sourcing the World’s Best</h1>
-            <p>We manage a robust international sourcing network to bring high‑quality global produce to the demanding Indian market with efficiency, competitive pricing, and guaranteed quality.</p>
+        <section class="sub-hero product-page-header">
+            <div class="content-narrow-header">
+                <h1>Our Import <strong>Strength</strong>: Sourcing the World’s Best</h1>
+                <p>We manage a robust international sourcing network to bring high-quality global produce to the demanding Indian market with efficiency, competitive pricing, and guaranteed quality.</p>
+            </div>
         </section>
 
-        <section class="split">
-            <article>
-                <h2>Premium Apples</h2>
-                <p>Sourced from established global markets, including Washington, Turkey, and Chile. We prioritize varieties known for their superior crunch, vibrant color, and consistent sizing.</p>
-            </article>
-            <article>
-                <h2>Oranges & Citrus</h2>
-                <p>Cold‑chain managed shipment of high‑demand varieties sourced from leading citrus‑exporting nations globally. We focus on maximizing shelf‑life and delivering peak flavor.</p>
-            </article>
-            <article>
-                <h2>Raw Cashew Nuts</h2>
-                <p>Consistent grading and reliable bulk supply of Raw Cashew Nuts (RCN) sourced from major global origins in East/West Africa for Indian processors and kernel manufacturers.</p>
-            </article>
+        <section class="products-grid-wrapper" data-animate="rise">
+            <div class="products-grid content-narrow">
+                
+                <article class="product-card">
+                    <img src="apples.jpg" alt="Premium Apples" class="product-img">
+                    <div class="product-body">
+                        <h2><span class="bullet-point"></span>Premium Apples</h2>
+                        <p class="product-focus">
+                            Sourced from established global markets, including 
+                            <strong class="highlight">Washington, Turkey, and Chile</strong>. 
+                            We prioritize varieties known for their superior crunch, vibrant color, and consistent sizing.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img src="oranges.jpg" alt="Oranges & Citrus" class="product-img">
+                    <div class="product-body">
+                        <h2><span class="bullet-point"></span>Oranges & Citrus</h2>
+                        <p class="product-focus">
+                            <strong class="highlight">Cold-chain managed shipment</strong> of high-demand varieties 
+                            sourced from leading citrus-exporting nations globally. 
+                            We focus on <strong class="highlight">maximizing shelf-life and delivering peak flavor</strong>.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="product-card">
+                    <img src="cashews nuts.jpg" alt="Raw Cashew Nuts" class="product-img">
+                    <div class="product-body">
+                        <h2><span class="bullet-point"></span>Raw Cashew Nuts</h2>
+                        <p class="product-focus">
+                            <strong class="highlight">Consistent grading and reliable bulk supply</strong> of Raw Cashew Nuts (RCN) 
+                            sourced from major global origins in <strong class="highlight">East/West Africa</strong> for Indian processors 
+                            and kernel manufacturers.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" data-animate="fade-up">
         <div class="footer-inner">
             <div class="f-brand">
                 <img src="logo.png" alt="RNS Groups" class="footer-logo">
-                <p>Premium imports for India’s demanding market.</p>
+                <p>RNS Groups connects Indian agri‑excellence with global demand and brings premium produce to India.</p>
+                
+                <div class="f-social">
+                    <a href="#" aria-label="Facebook">
+                        <i class="fa fa-facebook social-icon"></i>
+                    </a>
+                    <a href="#" aria-label="X (Twitter)">
+                        <i class="fa fa-twitter social-icon"></i>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <i class="fa fa-instagram social-icon"></i> 
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <i class="fa fa-youtube social-icon"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <i class="fa fa-linkedin social-icon"></i>
+                    </a>
+                </div>
             </div>
             <nav class="f-nav">
                 <a href="index.html">Home</a>
-                <a href="imports.html" class="is-active">Import</a>
+                <a href="imports.html">Import</a>
                 <a href="exports.html">Export</a>
                 <a href="index.html#contact">Contact</a>
             </nav>
+            
             <div class="f-contact">
-                <p>Email: <a href="mailto:info@rnsgroups.in">info@rnsgroups.in</a></p>
-                <p>WhatsApp / Direct: <a href="https://wa.me/916382494303" target="_blank" rel="noopener">+91 63824 94303</a></p>
                 <p>
-                    Address: <a href="https://www.google.com/maps/search/?api=1&query=28%2C+Kandhaswamy+Mudhaliyar+St%2C+Vettaikaranpudur%2C+Pollachi%2C+Coimbatore%2C+India%2C+642129" target="_blank" rel="noopener">28, Kandhaswamy Mudhaliyar St, Vettaikaranpudur, Pollachi, Coimbatore, India, 642129</a>
+                    <i class="fa fa-envelope contact-icon"></i>
+                    Email: <a href="mailto:info@rnsgroups.in" class="footer-link">info@rnsgroups.in</a>
+                </p>
+                <p>
+                    <i class="fa fa-phone contact-icon"></i>
+                    Phone: <a href="https://wa.me/916382494303" target="_blank" rel="noopener" class="footer-link">+91 63824 94303</a>
+                </p>
+                <p class="address-paragraph">
+                    <i class="fa fa-map-marker contact-icon"></i>Location:
+                    <a href="https://www.google.com/maps/search/?api=1&query=28%2C+Kandhaswamy+Mudhaliyar+St%2C+Vettaikaranpudur%2C+Pollachi%2C+Coimbatore%2C+India%2C+642129" target="_blank" rel="noopener" class="footer-link address-link">
+                        28, Kandhaswamy Mudhaliyar St,<br>
+                        Vettaikaranpudur, Pollachi, Coimbatore,<br>
+                        India, 642129
+                    </a>
                 </p>
             </div>
         </div>
-        <div class="f-bottom">© <span id="year"></span> RNS Groups.</div>
+        <div class="f-bottom">© <span id="year"></span> RNS Groups. All rights reserved.</div>
     </footer>
 
     <a href="https://wa.me/916382494303" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat on WhatsApp">
