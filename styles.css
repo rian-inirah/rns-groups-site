@@ -168,6 +168,41 @@ button,summary{touch-action:manipulation}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:55}
 .overlay.show{opacity:1;pointer-events:auto}
 
+/* =========================================
+   Sidebar Dropdown Styling (Fixes and requested placement)
+   ========================================= */
+
+.sidebar-nav details > summary {
+    /* 1. Hide the native browser arrow */
+    list-style: none;
+    /* 2. Use Flexbox to position icon to the right */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-nav details > summary::marker,
+.sidebar-nav details > summary::-webkit-details-marker {
+    /* Ensure native arrow is hidden everywhere */
+    display: none; 
+}
+
+/* 3. Style and position the custom Font Awesome icon (fa-chevron-down) */
+.sidebar-nav details > summary .fa {
+    margin-left: 10px; 
+    font-size: 0.8em;
+    transition: transform 0.25s ease;
+    transform: rotate(0deg); /* Default state: down arrow */
+}
+
+/* 4. Rotate the icon when the dropdown is open (the <details> element has the 'open' attribute) */
+.sidebar-nav details[open] > summary .fa {
+    transform: rotate(-180deg); /* Rotate to point up */
+}
+/* =========================================
+   End Sidebar Dropdown Styling
+   ========================================= */
+
 /* Hero */
 .hero{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;align-items:center;padding:40px 18px;max-width:1200px;margin:0 auto}
 .hero h1{font-size:clamp(26px,3.6vw,44px);line-height:1.15;margin:0 0 12px}
@@ -462,7 +497,6 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     font-weight:800;
     /* Match the same large clamp size as .about-heading */
     font-size:clamp(40px,6.5vw,64px); 
-    margin:0;
     line-height:1.1; /* Slightly looser line-height than the dense 1 used on about-heading */
     letter-spacing:-1px; 
     color:var(--text);
@@ -929,7 +963,6 @@ label{color:#cbd5e1;font-size:14px}
 
     .site-header{margin:8px 12px 0;max-width:calc(100% - 24px);top:14px;padding:8px 14px}
     .brand-logo-wrapper{height:34px}
-    .brand-logo{height:34px}
     .brand-logo--prominent{transform:scale(1)}
     .site-nav{display:none}
     .hamburger{display:grid}
