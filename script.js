@@ -138,9 +138,12 @@ form?.addEventListener('submit', (e) => {
     if (phoneInput && !phoneInput.checkValidity()) {
         alert(phoneInput.title || 'Invalid phone format.');
         return;
+        
     }
-    if (!validateEmail(email)) {
-        alert(emailInput?.title || 'Please enter a valid email address containing "@"');
+    // Using a more robust check for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert(emailInput?.title || 'Please enter a valid email address.');
         return;
     }
 
@@ -156,6 +159,13 @@ form?.addEventListener('submit', (e) => {
    Nav link active highlight & contact scroll behavior
    ---------------------------- */
 const currentPage = window.location.pathname.split("/").pop();
+
+// Function to set the active state on the correct link
+function setActiveLink(linkElements) {
+    document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
+    linkElements.forEach(l => l.classList.add("is-active"));
+}
+
 document.querySelectorAll(".nav-link").forEach(link => {
     const href = link.getAttribute("href");
     link.classList.remove("is-active");
@@ -171,28 +181,44 @@ document.querySelectorAll(".nav-link").forEach(link => {
     }
 });
 
-// Scroll tracker to mark contact nav active
+// Scroll tracker to mark contact nav active on homepage
 if (window.location.pathname.endsWith("index.html") || window.location.pathname === "/") {
     const contactSection = document.querySelector("#contact");
-    const homeLink = document.querySelectorAll('.nav-link[href="index.html"], .nav-link[href="./index.html"]');
+    const homeLink = document.querySelectorAll('.nav-link[href="index.html"], .nav-link[href="./index.html"], .nav-link[href="/"]');
     const contactLink = document.querySelectorAll('.nav-link[href*="#contact"]');
 
-    if (contactSection && contactLink.length) {
+    if (contactSection && contactLink.length && homeLink.length) {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
+                const rect = contactSection.getBoundingClientRect();
+                
                 if (entry.isIntersecting) {
-                    document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
-                    contactLink.forEach(l => l.classList.add("is-active"));
-                } else {
-                    const rect = contactSection.getBoundingClientRect();
+                    // Contact section is visible
+                    setActiveLink(contactLink);
+                } else if (rect.top > 0) {
+                    // User is scrolling *up* and the contact section is out of view (above 0)
+                    // If the top of the contact section is above the viewport (i.e. we scrolled past it)
+                    // we don't change anything, the previous logic handles that.
+                    
+                    // If the contact section is below a certain point of the viewport (e.g. 60% of screen height) 
+                    // AND not intersecting, assume we're back in the "Home" or previous sections.
                     if (rect.top > window.innerHeight * 0.6) {
-                        document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
-                        homeLink.forEach(l => l.classList.add("is-active"));
+                         setActiveLink(homeLink);
                     }
                 }
             });
-        }, { root: null, threshold: 0.4 });
+        }, { 
+            root: null, 
+            threshold: [0, 0.4] // Observe when it enters/leaves completely (0) and when it's 40% visible (0.4)
+        });
+        
         observer.observe(contactSection);
+
+        // Initial check to set home if we aren't in contact section on load
+        const rect = contactSection.getBoundingClientRect();
+        if (rect.top > window.innerHeight) {
+            setActiveLink(homeLink);
+        }
     }
 }
 
@@ -200,11 +226,12 @@ if (window.location.pathname.endsWith("index.html") || window.location.pathname 
 document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
     link.addEventListener("click", e => {
         const target = document.querySelector("#contact");
-        if (target && window.location.pathname.includes("index.html")) {
+        if (target && (window.location.pathname.includes("index.html") || window.location.pathname === "/")) {
             e.preventDefault();
             target.scrollIntoView({ behavior: "smooth" });
-            document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
-            link.classList.add("is-active");
+            setActiveLink(document.querySelectorAll('.nav-link[href*="#contact"]'));
+            // Close sidebar after click on mobile
+            if (window.innerWidth <= 900) hideSidebar();
         }
     });
 });
