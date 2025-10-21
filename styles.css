@@ -144,7 +144,7 @@ button,summary{touch-action:manipulation}
         transform: scale(1.5); /* Maintain prominence */
     }
 }
-/* ----------------------------------------------------------------- */
+ /* ----------------------------------------------------------------- */
 
 
 /* Navigation */
@@ -204,7 +204,7 @@ button,summary{touch-action:manipulation}
 .sidebar-nav details[open] > summary .fa {
     transform: rotate(-180deg); /* Rotate to point up */
 }
-/* =========================================
+ /* =========================================
    End Sidebar Dropdown Styling
    ========================================= */
 
@@ -219,11 +219,11 @@ button,summary{touch-action:manipulation}
 .btn-outline{background:transparent;color:var(--text)}
 .globe-wrap{display:grid;place-items:center}
 
-/* Globe integration */
-.globe-wrapper{margin-top:9vh;position:relative}
+/* Globe integration (desktop baseline) */
+.globe-wrapper{margin-top:9vh;position:relative;display:inline-flex;align-items:center;justify-content:center}
 .info{position:absolute;top:0;left:0;width:100%;text-align:center;height:100%;display:flex;justify-content:center;align-items:center;pointer-events:none}
 .info span{font-weight:700;text-shadow:0 0 5px #ffffff;padding:.2em .6em;border-radius:2px;font-size:1.4em;color:#111}
-canvas#globe-3d{cursor:pointer}
+canvas#globe-3d{cursor:pointer;display:block;max-width:100%;height:auto}
 svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 
 /* Sections */
@@ -373,7 +373,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     /* Old split article style removed/overwritten by .product-card */
     display: none; /* Hide old articles if they exist outside the new grid */
 }
-/* =========================
+ /* =========================
    End Product Page Styles
    ========================= */
 
@@ -695,13 +695,9 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
         margin-top: 40px;
     }
 }
-/* ========== END NEW PRODUCTS/TICKER SECTION STYLES ========== */
+ /* ========== END NEW PRODUCTS/TICKER SECTION STYLES ========== */
 
 
-/* WHY CHOOSE RNS GROUPS (updated styles) */
-/* WHY CHOOSE RNS GROUPS (updated styles) */
-/* WHY CHOOSE RNS GROUPS (updated styles) */
-/* WHY CHOOSE RNS GROUPS (updated styles) */
 /* WHY CHOOSE RNS GROUPS (updated styles) */
 .why{
     position:relative;
@@ -796,7 +792,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 /* Media Query Overrides for Mobile */
 @media(max-width:900px){
     
-    /* 1. VISION/MISSION ALIGNMENT FIX */
+    /* 1. VISION/MISSION ALIGNMENT Fixes */
     .vision-section, .mission-section {
         padding: 0 18px; /* Apply padding to the main section containers for alignment */
         margin-bottom: 30px; /* Reduce vertical spacing on mobile */
@@ -897,18 +893,60 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     }
 }
 
-@media(max-width:640px){
-    .why h2{font-size:1.8rem;}
+/* MOBILE-SPECIFIC GLOBE ADJUSTMENTS
+   - Moves and sizes globe for phone/tablet view (<=768px)
+   - Keeps desktop globe layout unchanged
+*/
+@media (max-width: 768px) {
+  /* Make sure hero stacks and globe can be placed below the header search-like field */
+  .hero { grid-template-columns: 1fr; gap: 12px; }
 
-    /* Product card image size adjustment on small screens */
-    .product-img {
-        height: 180px;
-    }
+  /* container to hold globe (keeps original markup safe on desktop) */
+  .globe-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 2; /* default within hero flow; JS will reinsert after search control if present */
+    padding: 10px 14px 18px;
+  }
 
-    .products-grid {
-        /* On small screens, use 1 column */
-        grid-template-columns: 1fr !important;
-    }
+  .globe-wrapper {
+    position: relative;
+    margin: 8px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ensure canvas respects mobile width and remains square */
+  canvas#globe-3d {
+    width: min(90vw, 360px) !important;
+    height: min(90vw, 360px) !important;
+    max-width: 360px;
+    max-height: 360px;
+    touch-action: pan-y; /* allow vertical scrolling while interacting */
+  }
+
+  .info span {
+    font-size: 1rem;
+    padding: .15em .5em;
+    text-shadow: 0 0 4px #000;
+  }
+
+  /* Slight spacing when globe gets moved */
+  .globe-container + .content-narrow {
+    margin-top: 8px;
+  }
+}
+
+/* Minimal canvas fallback for very small screens */
+@media (max-width: 420px) {
+  canvas#globe-3d {
+    width: min(86vw, 300px) !important;
+    height: min(86vw, 300px) !important;
+  }
 }
 
 /* Contact (Legacy Container for alignment, content moved to .contact-message-box) */
@@ -1167,20 +1205,16 @@ label{color:#cbd5e1;font-size:14px}
     display: flex; 
     align-items: center; 
 }
-/* Address line fix: Use flex-start to align icon to the top of the multi-line text block */
 .f-contact p.address-paragraph {
     align-items: flex-start;
 }
 .f-contact p.address-paragraph a.footer-link {
     display: block; 
-    /* Adjust padding/margin to vertically center the block of text relative to the icon */
     padding-top: 10px; 
     margin-top: -10px; 
 }
 
 /* 3. Social Media Icons (New) */
-
-/* FIX 1: Social Media Icons (Make Horizontal) */
 .f-social {
     display: flex; 
     gap: 12px;
@@ -1199,7 +1233,6 @@ label{color:#cbd5e1;font-size:14px}
     background: var(--accent);
     transform: translateY(-2px);
 }
-/* Social Icons (size and color) */
 .f-social .social-icon {
     font-size: 18px; /* Size for Facebook, X, etc. glyph */
     color: white; /* White glyph color */
@@ -1207,23 +1240,18 @@ label{color:#cbd5e1;font-size:14px}
 
 /* Contact Icons (Email, Phone, Address) - Size and Background */
 .f-contact .contact-icon {
-    /* KEY FIX: Standardize Contact Icon size to match Social Icons */
     width: 36px; 
     height: 36px;
-    min-width: 36px; /* Prevents shrinking */
-    background: #111111; /* Black circle background */
+    min-width: 36px; 
+    background: #111111; 
     border-radius: 50%;
-    
-    /* Center the Font Awesome glyph inside the new circle */
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* Style for the glyph */
-    font-size: 16px; /* Font size for the Mail/Phone/Map glyph */
+    font-size: 16px; 
     color: white; 
     margin-right: 8px; 
-    flex-shrink: 0; /* Prevents icon from shrinking on wrapping text */
+    flex-shrink: 0; 
 }
 
 /* FIX 3: Specific alignment for the Address text block */
@@ -1232,7 +1260,6 @@ label{color:#cbd5e1;font-size:14px}
 }
 .f-contact p.address-paragraph a.footer-link {
     display: block; 
-    /* Adjust padding/margin to vertically center the block of text relative to the icon */
     padding-top: 10px; 
     margin-top: -10px; 
 }
@@ -1251,7 +1278,7 @@ label{color:#cbd5e1;font-size:14px}
     color:#98a2ad;
     font-size: 0.85rem;
 }
-/* End Footer Specific Styling */
+ /* End Footer Specific Styling */
 
 
 /* WhatsApp FAB */
@@ -1266,3 +1293,22 @@ label{color:#cbd5e1;font-size:14px}
 [data-animate="rise"]{transform:translateY(20px)}
 [data-animate="tilt"]{transform:perspective(600px) rotateX(6deg);transform-origin:top}
 [data-animate="slide-left"]{transform:translateX(-18px)}
+
+/* === Remove blue focus ring / highlight from globe canvas on click or tap === */
+#globe-3d {
+    outline: none !important;
+  }
+  
+  #globe-3d:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Optional: for mobile browsers that apply a tap highlight overlay */
+  canvas#globe-3d, 
+  .globe-wrapper, 
+  .globe-container {
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation;
+  }
+  
