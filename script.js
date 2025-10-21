@@ -318,4 +318,63 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
     window.addEventListener('orientationchange', debouncedMove);
 })();
 
+/* ------------------------------
+   Mobile: ensure contact section sits below sticky header (dynamic)
+   Add this near the end of script.js
+   ------------------------------ */
+   (function mobileContactPaddingAdjust() {
+    const MOBILE_MAX = 640;
+
+    function applyContactPadding() {
+        try {
+            const contactEl = document.querySelector('.contact');
+            const headerEl = document.querySelector('.site-header');
+            if (!contactEl || !headerEl) return;
+
+            const w = window.innerWidth || document.documentElement.clientWidth;
+            if (w > MOBILE_MAX) {
+                // Remove inline style on larger viewports so desktop rules apply
+                contactEl.style.paddingTop = '';
+                return;
+            }
+
+            // Measure header including margins
+            const headerRect = headerEl.getBoundingClientRect();
+            // Add small buffer (20px) so content doesn't touch header
+            const buffer = 20;
+            const computedTop = Math.ceil(headerRect.height + buffer);
+
+            // Apply computed paddingTop as inline style (stronger than CSS)
+            contactEl.style.paddingTop = computedTop + 'px';
+
+            // Optionally nudge whatsapp-fab up if it overlaps bottom of card:
+            const fab = document.querySelector('.whatsapp-fab');
+            if (fab) {
+                // keep fab above inputs but below header; move it slightly above bottom if needed
+                fab.style.bottom = '12px';
+                fab.style.zIndex = 110;
+            }
+        } catch (err) {
+            // fail silently - CSS fallback will apply
+            console.warn('contact padding adjust err', err);
+        }
+    }
+
+    // Debounce util
+    let t;
+    function debouncedApply() {
+        clearTimeout(t);
+        t = setTimeout(applyContactPadding, 80);
+    }
+
+    // Run on DOM ready + resize + orientationchange
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        applyContactPadding();
+    } else {
+        document.addEventListener('DOMContentLoaded', applyContactPadding);
+    }
+    window.addEventListener('resize', debouncedApply, { passive: true });
+    window.addEventListener('orientationchange', debouncedApply);
+})();
+
 /* End of script.js */
