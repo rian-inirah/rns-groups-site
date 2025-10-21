@@ -146,6 +146,41 @@ button,summary{touch-action:manipulation}
 }
  /* ----------------------------------------------------------------- */
 
+/* ===== TABLET & DESKTOP OVERRIDES (applies for >= 641px) =====
+   These rules increase header width, enlarge logo, and add spacing
+   between the logo and company name ONLY for tablet and desktop.
+   They intentionally don't affect mobile (<641px).
+   ============================================================= */
+@media (min-width: 641px) {
+  /* Give header a bit more horizontal room on larger devices */
+  .site-header {
+    max-width: 1250px;   /* increased from 1160px */
+    padding: 10px 28px;  /* slightly more horizontal padding */
+  }
+
+  /* Space the logo and text farther apart so they don't feel cramped */
+  .brand {
+    gap: 40px; /* was 16px on base styles */
+  }
+
+  /* Make the logo container slightly taller on tablet/desktop */
+  .brand-logo-wrapper {
+    height: 40px;        /* increased from 44px */
+    align-items: center;
+  }
+
+  /* Scale the logo to use the available space (keeps aspect ratio) */
+  .brand-logo {
+    height: 40px;        /* match wrapper */
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* Slightly larger brand text for better balance with bigger logo */
+  .brand-text {
+    font-size: 1.22rem;
+  }
+}
 
 /* Navigation */
 .site-nav{display:flex;gap:18px;align-items:center}
@@ -697,7 +732,6 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 }
  /* ========== END NEW PRODUCTS/TICKER SECTION STYLES ========== */
 
-
 /* WHY CHOOSE RNS GROUPS (updated styles) */
 .why{
     position:relative;
@@ -893,6 +927,20 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     }
 }
 
+@media(max-width:640px){
+    .why h2{font-size:1.8rem;}
+
+    /* Product card image size adjustment on small screens */
+    .product-img {
+        height: 180px;
+    }
+
+    .products-grid {
+        /* On small screens, use 1 column */
+        grid-template-columns: 1fr !important;
+    }
+}
+
 /* MOBILE-SPECIFIC GLOBE ADJUSTMENTS
    - Moves and sizes globe for phone/tablet view (<=768px)
    - Keeps desktop globe layout unchanged
@@ -1036,6 +1084,7 @@ label{color:#cbd5e1;font-size:14px}
     appearance: menulist; 
     -webkit-appearance: menulist;
 }
+
 /* Force dropdown to always appear below on most modern browsers */
 .contact-message-box select {
     position: relative;
@@ -1162,7 +1211,7 @@ label{color:#cbd5e1;font-size:14px}
 .footer-logo{
     /* 1. Bigger Logo */
     height:80px; 
-    width: 100px;;
+    width: 100px;
     object-fit:contain;
     margin-bottom:12px;
 }
@@ -1205,16 +1254,20 @@ label{color:#cbd5e1;font-size:14px}
     display: flex; 
     align-items: center; 
 }
+/* Address line fix: Use flex-start to align icon to the top of the multi-line text block */
 .f-contact p.address-paragraph {
     align-items: flex-start;
 }
 .f-contact p.address-paragraph a.footer-link {
     display: block; 
+    /* Adjust padding/margin to vertically center the block of text relative to the icon */
     padding-top: 10px; 
     margin-top: -10px; 
 }
 
 /* 3. Social Media Icons (New) */
+
+/* FIX 1: Social Media Icons (Make Horizontal) */
 .f-social {
     display: flex; 
     gap: 12px;
@@ -1240,18 +1293,23 @@ label{color:#cbd5e1;font-size:14px}
 
 /* Contact Icons (Email, Phone, Address) - Size and Background */
 .f-contact .contact-icon {
+    /* KEY FIX: Standardize Contact Icon size to match Social Icons */
     width: 36px; 
     height: 36px;
-    min-width: 36px; 
-    background: #111111; 
+    min-width: 36px; /* Prevents shrinking */
+    background: #111111; /* Black circle background */
     border-radius: 50%;
+    
+    /* Center the Font Awesome glyph inside the new circle */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px; 
+    
+    /* Style for the glyph */
+    font-size: 16px; /* Font size for the Mail/Phone/Map glyph */
     color: white; 
     margin-right: 8px; 
-    flex-shrink: 0; 
+    flex-shrink: 0; /* Prevents icon from shrinking on wrapping text */
 }
 
 /* FIX 3: Specific alignment for the Address text block */
@@ -1260,6 +1318,7 @@ label{color:#cbd5e1;font-size:14px}
 }
 .f-contact p.address-paragraph a.footer-link {
     display: block; 
+    /* Adjust padding/margin to vertically center the block of text relative to the icon */
     padding-top: 10px; 
     margin-top: -10px; 
 }
@@ -1280,7 +1339,6 @@ label{color:#cbd5e1;font-size:14px}
 }
  /* End Footer Specific Styling */
 
-
 /* WhatsApp FAB */
 .whatsapp-fab{position:fixed;right:16px;bottom:16px;border-radius:14px;width:56px;height:56px;display:grid;place-items:center;z-index:70;animation:jump 1.6s ease-in-out infinite;background:transparent}
 .whatsapp-icon{width:48px;height:48px;object-fit:contain;filter: drop-shadow(0 4px 12px rgba(0,0,0,.5))}
@@ -1297,18 +1355,22 @@ label{color:#cbd5e1;font-size:14px}
 /* === Remove blue focus ring / highlight from globe canvas on click or tap === */
 #globe-3d {
     outline: none !important;
-  }
-  
-  #globe-3d:focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-  
-  /* Optional: for mobile browsers that apply a tap highlight overlay */
-  canvas#globe-3d, 
-  .globe-wrapper, 
-  .globe-container {
     -webkit-tap-highlight-color: transparent !important;
     touch-action: manipulation;
-  }
-  
+}
+
+#globe-3d:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Optional: also neutralize browser tap highlight for wrapper containers */
+canvas#globe-3d, 
+.globe-wrapper, 
+.globe-container {
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation;
+}
+
+/* Accessibility note: outline removed visually for the globe canvas.
+   The aria-label and keyboard handlers should remain on the canvas for screen-reader users. */
