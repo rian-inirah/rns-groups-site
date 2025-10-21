@@ -651,11 +651,12 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 .products-ticker-section {
     max-width: 1100px;
     margin: 60px auto 40px;
-    padding: 0 18px;
+    padding: 0 ;
 }
 
 .ticker-group {
     margin-top: 25px;
+    padding: 0 18px;
 }
 
 .ticker-subhead {
@@ -675,6 +676,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 
 /* Core Ticker Styles */
 .ticker {
+    width: 100%;
     overflow: hidden;
     padding: 10px 0;
     white-space: nowrap;

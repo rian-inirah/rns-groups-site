@@ -92,6 +92,75 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// AUTO-ALIGN: robust version (waits a bit, forces important, fallback to transform, logs)
+// AUTO-ALIGN: robust persistent version
+function alignImportToExportOnce() {
+    try {
+      const tickers = document.querySelectorAll('.products-ticker-section .ticker');
+      if (!tickers || tickers.length < 2) {
+        console.log('align: tickers not found or less than 2');
+        return;
+      }
+      const importTicker = tickers[0];
+      const exportTicker = tickers[1];
+  
+      // short delay so layout/font rendering finishes
+      setTimeout(() => {
+        try {
+          const impRect = importTicker.getBoundingClientRect();
+          const expRect = exportTicker.getBoundingClientRect();
+          const diff = Math.round(expRect.left - impRect.left);
+  
+          console.log('align: impLeft=', impRect.left, 'expLeft=', expRect.left, 'diff=', diff);
+  
+          // If diff is significant, set/update margin-left and persist it
+          if (Math.abs(diff) > 1) {
+            importTicker.style.setProperty('margin-left', diff + 'px', 'important');
+            importTicker.setAttribute('data-auto-adjust', 'margin');
+            // remove any transform fallback if set previously
+            if (importTicker.getAttribute('data-auto-adjust') === 'transform') {
+              importTicker.style.removeProperty('transform');
+            }
+            console.log('align: set margin-left to', diff + 'px');
+            return;
+          }
+  
+          // If diff is negligible AND we've never adjusted before, do nothing.
+          // If we've previously adjusted, keep that adjustment (do not remove),
+          // because immediately after applying margin the measured diff will be ~0.
+          if (importTicker.getAttribute('data-auto-adjust')) {
+            console.log('align: already adjusted previously; keeping inline margin');
+            // Optional: recompute the currently-set margin and log it
+            const currentInline = importTicker.style.marginLeft || '(none)';
+            console.log('align: current inline marginLeft =', currentInline);
+          } else {
+            console.log('align: negligible diff and no previous auto adjustment');
+          }
+  
+        } catch (innerErr) {
+          console.warn('align inner err', innerErr);
+        }
+      }, 220);
+    } catch (err) {
+      console.warn('alignImportToExportOnce error', err);
+    }
+  }
+  
+  // Event listeners: recalc on load + DOM ready + resize/orientation (debounced)
+  window.addEventListener('load', alignImportToExportOnce);
+  document.addEventListener('DOMContentLoaded', () => setTimeout(alignImportToExportOnce, 260));
+  
+  let __alignTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(__alignTimer);
+    __alignTimer = setTimeout(alignImportToExportOnce, 160);
+  });
+  window.addEventListener('orientationchange', () => {
+    clearTimeout(__alignTimer);
+    __alignTimer = setTimeout(alignImportToExportOnce, 220);
+  });
+    
+
 // Public: update displayed country code (called from onchange in HTML)
 window.updateCountryCodeDisplay = function(countryName) {
     const data = countryCodeData.find(c => c.name === countryName);
