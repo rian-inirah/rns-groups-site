@@ -459,19 +459,18 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
    About Us — Vision & Mission (Simplified)
    ========================= */
 
-/* Shared Heading Styles (Used by Vision/Mission and Our Products) */
+/* Shared Heading Styles */
 .vision-title,
 .mission-title {
     text-align: center;
     font-size: clamp(32px, 4vw, 44px);
     font-weight: 800;
     color: var(--text);
-    /* Correct margin for the main heading sections */
     margin: 0 auto 24px;
     letter-spacing:-0.4px;
 }
 
-/* ========== VISION SECTION (Ensure original spacing is maintained) ========== */
+/* ========== VISION SECTION ========== */
 .vision-section {
     text-align: center;
     margin-bottom: 60px;
@@ -533,7 +532,7 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     transform: translateY(-3px);
 }
 
-/* ========== MISSION SECTION (Ensure original spacing is maintained) ========== */
+/* ========== MISSION SECTION ========== */
 .mission-section {
     text-align: center;
     margin-top: 40px;
@@ -541,7 +540,6 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 }
 
 .mission-title {
-    /* Restore specific mission title margin */
     margin-bottom: 12px;
 }
 
@@ -607,15 +605,14 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 
 
 /* Ticker */
-/* This is your old ticker code, which is being superseded by the .products-ticker-section below. */
-/* Keeping it for reference, but the new implementation is preferred. */
+/* Keeping the original ticker styles here but the new implementation is below this section */
 /* .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:22px}
 .ticker-track{display:inline-flex;gap:34px;white-space:nowrap;animation:ticker 24s linear infinite;padding:12px 0;animation-duration: 24s;}
 .ticker:hover .ticker-track{animation-play-state:paused}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 */
 
-/* ========== NEW PRODUCTS/TICKER SECTION STYLES (IMPLEMENTED SHINE, SPACING, AND ANIMATION) ========== */
+/* ========== NEW PRODUCTS/TICKER SECTION STYLES ========== */
 .products-ticker-section {
     max-width: 1100px;
     margin: 60px auto 40px;
@@ -655,72 +652,34 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 }
 
 .ticker-track {
-    /* CRITICAL FIX: Ensures the track is 200% width for seamless loop */
     display: inline-flex;
     gap: 20px;
     white-space: nowrap;
     animation: ticker-scroll 28s linear infinite;
     padding: 8px 0;
     animation-play-state: running;
-    width: 200%; /* Must be 200% as the content is duplicated in HTML */
 }
 
 .ticker:hover .ticker-track {
     animation-play-state: paused;
 }
 
-/* Product Pill Styling with Shining Effect */
 .product-pill {
     display: inline-block;
-    padding: 10px 24px; 
+    padding: 10px 20px;
     border-radius: 999px;
+    background: var(--bg);
     color: var(--text);
     font-weight: 600;
     font-size: 0.95rem;
-    
-    /* Base dark gradient background matching the image */
-    background: linear-gradient(145deg, #1d1f22, #111214); 
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(255, 255, 255, 0.05);
-
-    /* --- SHINING EFFECT SETUP --- */
-    position: relative;
-    overflow: hidden;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--line);
 }
 
-/* The Shining Pseudo-element (creates the highlight slash) */
-.product-pill::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -150%; 
-    width: 300%; 
-    height: 100%;
-    /* Gradient for the diagonal shine effect */
-    background: linear-gradient(
-        90deg, 
-        transparent, 
-        rgba(255, 255, 255, 0.1), 
-        rgba(255, 255, 255, 0.2), 
-        transparent
-    );
-    transform: skewX(-20deg); /* Diagonal slant for the shine */
-    opacity: 0.8; 
-    pointer-events: none;
-    /* Apply shine animation */
-    animation: shine 4s linear infinite; 
-}
-
-/* Keyframes for the continuous scrolling animation (Right-to-Left movement, as standard for seamless loops) */
+/* Animation Keyframes (Left to Right movement) */
 @keyframes ticker-scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Scrolls one full set of duplicated items (50% of the 200% width) */
-}
-
-/* Keyframes for the shining effect on the pills */
-@keyframes shine {
-    0% { left: -150%; }
-    100% { left: 150%; } /* Sweep completely across the pill */
+    100% { transform: translateX(-50%); }
 }
 
 /* Adjust animation speed/duration on smaller screens */
@@ -836,7 +795,40 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 
 /* Media Query Overrides for Mobile */
 @media(max-width:900px){
-    /* New Product Grid mobile override */
+    
+    /* 1. VISION/MISSION ALIGNMENT FIX */
+    .vision-section, .mission-section {
+        padding: 0 18px; /* Apply padding to the main section containers for alignment */
+        margin-bottom: 30px; /* Reduce vertical spacing on mobile */
+    }
+    
+    .vision-card {
+        max-width: 100%; /* Allow card to take full width of padding */
+        padding: 28px 20px; /* Adjust inner padding on mobile */
+    }
+
+    .mission-grid {
+        padding: 0; /* Remove extra inner padding */
+        gap: 18px; /* Reduce grid gap on mobile for better fit */
+    }
+    
+    .mission-card {
+        padding: 20px; /* Adjust inner padding on mobile */
+    }
+    
+    /* 2. CONTACT US PADDING FIX FOR MOBILE TEXT */
+    /* Target the Contact section's content-narrow wrapper for correct padding */
+    .contact .content-narrow {
+        padding: 26px 18px !important; /* Use 18px padding for content sections */
+    }
+    
+    /* Remove redundant padding added to the titles and paragraphs inside this section */
+    .contact-h2-title, .contact-paragraph {
+        padding: 0; 
+        text-align: left; /* Ensure alignment on mobile */
+    }
+    
+    /* Mobile styles from before */
     .products-grid {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -862,6 +854,47 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     }
     .why-points li::before{width:10px;height:10px;margin-top:6px}
     .why-points li strong{font-size:1rem;}
+    
+    /* Other mobile styles */
+    .brand {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin-left: 0;
+    }
+    .brand-logo-wrapper {
+        position: static;
+        width: auto;
+        height: 34px; /* Default mobile size */
+        visibility: visible;
+    }
+
+    .site-header{margin:8px 12px 0;max-width:calc(100% - 24px);top:14px;padding:8px 14px}
+    .brand-logo-wrapper{height:34px}
+    .brand-logo--prominent{transform:scale(1)}
+    .site-nav{display:none}
+    .hamburger{display:grid}
+    .hero{grid-template-columns:1fr;gap:16px;padding:26px 14px}
+    .hero-cta{flex-wrap:wrap}
+    .brand-text{font-size:1rem;letter-spacing:1px}
+
+    /* About / Mission responsiveness */
+    .about-grid{grid-template-columns:1fr;gap:22px}
+    /* .vision-card is adjusted above */
+    /* .mission-grid is adjusted above */
+    .mission-card::after{display:none}
+    .vision-card::before{filter:blur(26px);opacity:0.9;left:-8%;right:-8%}
+    .feature-grid{grid-template-columns:1fr}
+    .feature-icon{width:66px;height:66px;flex:0 0 66px}
+    .feature-card{min-height:auto}
+    .about-title{font-size:clamp(24px,7.5vw,36px)}
+    
+    /* Footer responsiveness for smaller screens */
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px 20px 10px;
+    }
 }
 
 @media(max-width:640px){
