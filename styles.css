@@ -1110,6 +1110,81 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     backdrop-filter: none !important;
     image-rendering: auto !important;
   }
+  /* ==============================
+   Mobile: tidy up "Why Choose RNS Groups"
+   Applies only on phone / small tablets
+   ============================== */
+@media (max-width: 900px) {
+    /* tighten outer spacing and keep heading aligned */
+    .why {
+      padding: 18px 14px;
+    }
+    .why h2 {
+      text-align: left;
+      padding-left: 4px;
+      margin-bottom: 10px;
+    }
+  
+    /* remove native list indentation then style items as a two-column flow:
+       - left: small dot (pseudo-element)
+       - middle: bold title (stacked, fixed column)
+       - right: description (flexible column)
+    */
+    .why-points {
+      list-style: none;
+      padding: 0 6px;
+      margin: 0;
+    }
+  
+    .why-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 6px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      box-sizing: border-box;
+      min-height: 56px; /* keeps visual rhythm */
+    }
+  
+    /* keep the round accent dot - use the existing ::before pattern */
+    .why-points li::before {
+      content: "";
+      flex: 0 0 12px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 6px; /* vertically align it with title text */
+    }
+  
+    /* Title column: bold, block so it wraps independently */
+    .why-points strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      min-width: 110px;    /* reserve column width for titles */
+      max-width: 42%;      /* allow wrapping on very narrow screens */
+      flex: 0 0 auto;      /* don't let title shrink too small */
+      margin-right: 2px;
+    }
+  
+    /* Description column: flexible, readable, and left-aligned */
+    .why-points li > *:not(strong) {
+      flex: 1 1 auto;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+  
+    /* Slightly reduce spacing for very small phones */
+    @media (max-width: 420px) {
+      .why-points li { padding: 10px 6px; min-height: 52px; gap: 10px; }
+      .why-points strong { min-width: 90px; max-width: 48%; font-size: 0.98rem; }
+    }
+  }
   
 
 /* Contact (Legacy Container for alignment, content moved to .contact-message-box) */
