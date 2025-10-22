@@ -1090,6 +1090,27 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     height: min(86vw, 300px) !important;
   }
 }
+/* make the country label crisper and prefer subpixel antialiasing */
+.info span {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-weight: 700;
+    /* optional: slightly increase contrast for better readability */
+    color: #111 !important;
+    text-shadow: none !important;
+  }
+  
+  /* already added — but keep it to guarantee no blur filters */
+  canvas#globe-3d,
+  .globe-wrap canvas#globe-3d,
+  .globe-container canvas#globe-3d {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    image-rendering: auto !important;
+  }
+  
 
 /* Contact (Legacy Container for alignment, content moved to .contact-message-box) */
 .contact-form{display:grid;gap:12px;margin-top:14px}
@@ -1486,6 +1507,54 @@ canvas#globe-3d,
 .globe-container {
     -webkit-tap-highlight-color: transparent !important;
     touch-action: manipulation;
+}
+
+@media (max-width: 900px) {
+    /* --- Remove any blur or backdrop effect on the globe --- */
+    .globe-wrap canvas#globe-3d,
+    .globe-container canvas#globe-3d,
+    canvas#globe-3d {
+      filter: none !important;
+      -webkit-filter: none !important;
+      backdrop-filter: none !important;
+    }
+  }
+  @media (max-width: 900px) {
+    /* Extra spacing between header and globe on small screens */
+    .site-header + .globe-wrap,
+    .site-header + .globe-container {
+      margin-top: 28px !important; /* adjust value (e.g. 24–32px) as needed */
+    }
+  }
+/* === Globe clarity enhancement (mobile + general) === */
+.globe-wrap,
+.globe-container {
+  image-rendering: crisp-edges !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: geometricPrecision !important;
+}
+
+/* Ensure globe canvas renders sharp and not softened */
+canvas#globe-3d {
+    filter: none !important;
+    -webkit-filter: none !important;
+    backdrop-filter: none !important;
+    image-rendering: crisp-edges !important;
+    transform: translateZ(0);         /* ✅ standard property */
+    -webkit-transform: translateZ(0); /* vendor prefix for Safari */
+  }
+  
+
+/* Make country name labels clearer and darker */
+.info span {
+  font-weight: 800 !important;
+  color: #111 !important;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.9), 0 0 6px rgba(255, 255, 255, 0.5);
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
 }
 
 /* Accessibility note: outline removed visually for the globe canvas.
