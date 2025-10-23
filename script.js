@@ -159,21 +159,11 @@ function alignImportToExportOnce() {
     clearTimeout(__alignTimer);
     __alignTimer = setTimeout(alignImportToExportOnce, 220);
   });
-    
-
-// Public: update displayed country code (called from onchange in HTML)
-window.updateCountryCodeDisplay = function(countryName) {
-    const data = countryCodeData.find(c => c.name === countryName);
-    const code = data ? data.code : 'Code';
-    if (countryCodeDisplay) countryCodeDisplay.textContent = code;
-    if (countryCodeHidden) countryCodeHidden.value = data ? data.code : '';
-};
 
 /* ----------------------------
    Contact Form
    ---------------------------- */
-function validateEmail(email) {
-    // minimal check for '@'
+   function validateEmail(email) {
     return typeof email === 'string' && email.includes('@');
 }
 
@@ -182,6 +172,8 @@ form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const nameInput = document.getElementById('name');
+    const countrySel = document.getElementById('country');       // now a text input
+    const countryCodeInput = document.getElementById('countryCode');
     const phoneInput = document.getElementById('phone');
     const emailInput = document.getElementById('email');
     const messageInput = document.getElementById('message');
@@ -191,7 +183,7 @@ form?.addEventListener('submit', (e) => {
     const email = emailInput?.value.trim() || '';
     const message = messageInput?.value.trim() || '';
     const country = countrySel?.value.trim() || '';
-    const countryCode = countryCodeHidden?.value.trim() || '';
+    const countryCode = countryCodeInput?.value.trim() || '';
 
     // Required check
     if (!name || !phone || !email || !country || !countryCode || !message) {
@@ -207,23 +199,36 @@ form?.addEventListener('submit', (e) => {
     if (phoneInput && !phoneInput.checkValidity()) {
         alert(phoneInput.title || 'Invalid phone format.');
         return;
-        
     }
-    // Using a more robust check for email validation
+    if (countrySel && !countrySel.checkValidity()) {
+        alert(countrySel.title || 'Invalid country name format.');
+        return;
+    }
+    if (countryCodeInput && !countryCodeInput.checkValidity()) {
+        alert(countryCodeInput.title || 'Invalid country code format.');
+        return;
+    }
+
+    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert(emailInput?.title || 'Please enter a valid email address.');
         return;
     }
 
-    const fullPhone = `${countryCode} ${phone}`;
+    // Normalize country code: ensure it either starts with + or add it
+    let normalizedCode = countryCode;
+    if (!normalizedCode.startsWith('+')) {
+        normalizedCode = '+' + normalizedCode.replace(/[^0-9]/g, '');
+    }
+
+    const fullPhone = `${normalizedCode} ${phone}`;
     const subject = encodeURIComponent(`New enquiry from ${name} (${country})`);
     const body = encodeURIComponent(`Name: ${name}\nCountry: ${country}\nPhone: ${fullPhone}\nEmail: ${email}\n\nMessage:\n${message}`);
 
-    // Mailto fallback (keeps behavior from original)
+    // Mailto fallback (keeps current behavior)
     window.location.href = `mailto:info@rnsgroups.in?subject=${subject}&body=${body}`;
 });
-
 /* ----------------------------
    Nav link active highlight & contact scroll behavior
    ---------------------------- */
