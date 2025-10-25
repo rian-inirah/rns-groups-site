@@ -498,45 +498,50 @@
                         <svg id="country" aria-hidden="true"></svg>
                   </div>
             </section>
-            <section id="about" class="about" data-animate="rise" aria-labelledby="about-heading">
-                  <div class="content-narrow">
-
-                        <!-- Heading -->
-                        <div class="about-left">
-                              <h2 id="about-heading" class="about-heading">
-                                    About <span class="accent">Us</span>
-                              </h2>
-
-                              <div class="about-pill" aria-hidden="true"></div>
-
-                              <!-- Main About Paragraph -->
-                              <p class="about-desc">
-                                    RNS Groups is a dynamic, next generation import, and export company based in India,
-                                    bridging the gap between Indian farms and global markets. We specialize in exporting
-                                    India’s finest agricultural commodities while importing the world’s best product for
-                                    Indian buyers.
-                              </p>
-                        </div>
-
-                        <!-- Secondary Description (previously in card, now full width) -->
-                        <div class="about-info" role="region" aria-label="Company highlights">
-                              <p class="about-desc" style="margin-top:22px;">
-                                    With a commitment to
-                                    <strong style="color:var(--accent)">verified quality</strong>,
-                                    <strong style="color:var(--accent)">on-time delivery</strong>, and
-                                    <strong style="color:var(--accent)">complete transparency</strong>,
-                                    we ensure every shipment meets international standards from sourcing to
-                                    documentation.
-                              </p>
-
-                              <!-- Italic Quote -->
-                              <p class="muted-quote" style="margin-top:16px;">
-                                    Partner with us for a reliable, long-term trade relationship built on integrity and
-                                    performance.
-                              </p>
-                        </div>
-
-                  </div>
+            <!-- =========================
+     ABOUT US SECTION
+========================= -->
+<section id="about" class="about" data-animate="rise" aria-labelledby="about-heading">
+      <div class="content-narrow">
+        
+        <!-- Heading -->
+        <div class="about-left">
+          <h2 id="about-heading" class="about-heading">
+            About <span class="accent">Us</span>
+          </h2>
+    
+          <div class="about-pill" aria-hidden="true"></div>
+    
+          <!-- Main About Paragraph -->
+          <p class="about-desc">
+            RNS Groups is a dynamic, next generation import, and export company based in India,
+            bridging the gap between Indian farms and global markets. We specialize in exporting
+            India’s finest agricultural commodities while importing the world’s best products for
+            Indian buyers.
+          </p>
+        </div>
+    
+        <!-- Secondary Description -->
+        <div class="about-info" role="region" aria-label="Company highlights">
+          <p class="about-desc" style="margin-top:22px;">
+            With a commitment to
+            <strong style="color:var(--accent)">verified quality</strong>,
+            <strong style="color:var(--accent)">on-time delivery</strong>, and
+            <strong style="color:var(--accent)">complete transparency</strong>,
+            we ensure every shipment meets international standards from sourcing to
+            documentation.
+          </p>
+    
+          <!-- Italic Quote -->
+          <p class="muted-quote" style="margin-top:16px;">
+            Partner with us for a reliable, long-term trade relationship built on integrity and
+            performance.
+          </p>
+        </div>
+    
+      </div>
+    
+    
 
                   <!-- Feature grid (2x2) — icons built with CSS/SVG, no external images -->
                   <!-- Vision (big title + glowing card with pills) -->
@@ -716,7 +721,7 @@
                                                 inputmode="numeric"
                                                 maxlength="4"
                                                 pattern="^\+?[0-9]{1,4}$"
-                                                title="Country code (e.g. +91 or 91). Up to 4 digits, optional leading +."
+                                                title="Country code (e.g. 91). Up to 4 digits."
                                                 oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                           <!-- Local phone number -->
                                           <input id="phone" name="phone" type="tel" placeholder="Your phone number"

@@ -416,77 +416,124 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
    About Section
    ============== */
 
-.about{
-    padding-top: 24px;
-    padding-bottom: 32px;
+/* === ABOUT SECTION BACKGROUND IMAGE === */
+/* =========================
+   ABOUT SECTION
+   ========================= */
+   .about {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    background: url("assets/images/About_us_background.jpg") center center/cover no-repeat fixed;
+    overflow: hidden;
 }
 
-/* Layout wrapper used in the HTML you requested */
-.about-grid{
-    display:grid;
+/* Overlay for readability */
+.about::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
+}
+
+/* Ensure content above overlay */
+.about .content-narrow {
+    position: relative;
+    z-index: 1;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .about {
+      background-attachment: scroll;
+      padding-top: 60px;
+      padding-bottom: 60px;
+  }
+}
+
+/* Layout wrapper */
+.about-grid {
+    display: grid;
     grid-template-columns: 1fr 420px;
-    gap:34px;
-    align-items:start;
+    gap: 34px;
+    align-items: start;
 }
 
 /* Left column */
-.about-heading{
-    font-weight:800;
-    font-size:clamp(40px,6.5vw,64px);
-    margin:0 0 10px;
-    line-height:1;
-    letter-spacing:-1px;
-    color:var(--text);
+.about-heading {
+    font-weight: 800;
+    font-size: clamp(40px,6.5vw,64px);
+    margin: 0 0 10px;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: #ffffff; /* white heading */
 }
-.about-heading .accent{
-    color:var(--accent);
-    display:inline-block;
-    margin-left:6px;
-}
-
-.about-pill{
-    width:64px;
-    height:10px;
-    border-radius:999px;
-    background:linear-gradient(90deg,var(--accent), rgba(41,168,255,0.22));
-    box-shadow:0 6px 22px rgba(41,168,255,0.08);
-    margin:14px 0 22px;
+.about-heading .accent {
+    color: var(--accent);
+    display: inline-block;
+    margin-left: 6px;
 }
 
-.about-desc{
-    color:var(--muted);
-    font-size:1.04rem;
-    line-height:1.75;
-    max-width:68ch;
-    margin:0 0 6px;
+.about-pill {
+    width: 64px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg,var(--accent), rgba(41,168,255,0.22));
+    box-shadow: 0 6px 22px rgba(41,168,255,0.08);
+    margin: 14px 0 22px;
+}
+
+.about-desc {
+    color: #ffffff; /* changed from muted */
+    font-size: 1.04rem;
+    line-height: 1.75;
+    max-width: 68ch;
+    margin: 0 0 6px;
 }
 
 /* Right card */
-.about-card{
-    position:relative;
-    border-radius:14px;
-    padding:22px;
-    background:linear-gradient(180deg, rgba(12,14,16,0.92), rgba(255,255,255,0.01));
-    border:1px solid rgba(76,194,255,0.06);
+.about-card {
+    position: relative;
+    border-radius: 14px;
+    padding: 22px;
+    background: linear-gradient(180deg, rgba(12,14,16,0.92), rgba(255,255,255,0.01));
+    border: 1px solid rgba(76,194,255,0.06);
     box-shadow: 0 28px 64px rgba(3,6,8,0.6), inset 0 0 26px rgba(41,168,255,0.02);
-    min-width:300px;
-    overflow:hidden;
+    min-width: 300px;
+    overflow: hidden;
 }
-.about-card::before{
-    content:"";
-    position:absolute;
-    inset:-6% -10%;
-    background:radial-gradient(closest_side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
-    filter:blur(30px);
-    pointer-events:none;
-    z-index:0;
-    border-radius:18px;
+.about-card::before {
+    content: "";
+    position: absolute;
+    inset: -6% -10%;
+    background: radial-gradient(closest-side,rgba(41,168,255,0.12),rgba(0,0,0,0) 52%);
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 18px;
 }
-.card-body{position:relative;z-index:1}
-.card-body p{margin:0;color:var(--text);line-height:1.6;font-size:0.98rem}
-.lead-strong{font-weight:700}
-.card-body hr{border:0;border-top:1px solid rgba(255,255,255,0.03);margin:14px 0}
-.muted-quote{color:var(--muted);font-style:italic;margin-top:6px}
+.card-body {
+    position: relative;
+    z-index: 1;
+}
+.card-body p {
+    margin: 0;
+    color: #ffffff; /* white */
+    line-height: 1.6;
+    font-size: 0.98rem;
+}
+.lead-strong { font-weight: 700; }
+.card-body hr {
+    border: 0;
+    border-top: 1px solid rgba(255,255,255,0.03);
+    margin: 14px 0;
+}
+.muted-quote {
+    color: #ffffff; /* white */
+    font-style: italic;
+    margin-top: 6px;
+}
 
 /* ========== end About Section ========== */
 
@@ -500,9 +547,9 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     text-align: center;
     font-size: clamp(32px, 4vw, 44px);
     font-weight: 800;
-    color: var(--text);
+    color: #ffffff; /* white headings */
     margin: 0 auto 24px;
-    letter-spacing:-0.4px;
+    letter-spacing: -0.4px;
 }
 
 /* ========== VISION SECTION ========== */
@@ -527,20 +574,20 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     overflow: hidden;
 }
 
-.vision-card::before{
-    content:"";
-    position:absolute;
-    inset:-20% -12%;
-    background:radial-gradient(closest_side,rgba(41,168,255,0.12),rgba(0,0,0,0) 60%);
-    filter:blur(36px);
-    pointer-events:none;
-    opacity:0.9;
+.vision-card::before {
+    content: "";
+    position: absolute;
+    inset: -20% -12%;
+    background: radial-gradient(closest-side,rgba(41,168,255,0.12),rgba(0,0,0,0) 60%);
+    filter: blur(36px);
+    pointer-events: none;
+    opacity: 0.9;
 }
 
 .vision-card p {
     max-width: 68ch;
     margin: 0 auto 22px;
-    color: var(--text);
+    color: #ffffff; /* white */
     line-height: 1.7;
     font-size: 1.05rem;
 }
@@ -574,14 +621,12 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     margin-bottom: 20px;
 }
 
-.mission-title {
-    margin-bottom: 12px;
-}
+.mission-title { margin-bottom: 12px; }
 
 .mission-intro {
     max-width: 800px;
     margin: 0 auto 28px;
-    color: var(--muted);
+    color: #ffffff; /* white */
     font-size: 1.05rem;
     line-height: 1.6;
 }
@@ -629,29 +674,20 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
 .mission-card h4 {
     margin: 6px 0 12px;
     font-size: 1.1rem;
-    color: var(--text);
+    color: #ffffff; /* white headings */
 }
 .mission-card p {
     margin: 0;
-    color: var(--muted);
+    color: #ffffff; /* white paragraphs */
     font-size: 0.98rem;
     line-height: 1.6;
 }
 
-
-/* Ticker */
-/* Keeping the original ticker styles here but the new implementation is below this section */
-/* .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:22px}
-.ticker-track{display:inline-flex;gap:34px;white-space:nowrap;animation:ticker 24s linear infinite;padding:12px 0;animation-duration: 24s;}
-.ticker:hover .ticker-track{animation-play-state:paused}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-*/
-
-/* ========== NEW PRODUCTS/TICKER SECTION STYLES ========== */
+/* ========== PRODUCTS/TICKER SECTION ========== */
 .products-ticker-section {
     max-width: 1100px;
     margin: 60px auto 40px;
-    padding: 0 ;
+    padding: 0;
 }
 
 .ticker-group {
@@ -666,13 +702,8 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     text-align: center;
 }
 
-.accent-import {
-    color: var(--import-color);
-}
-
-.accent-export {
-    color: var(--export-color);
-}
+.accent-import { color: var(--import-color); }
+.accent-export { color: var(--export-color); }
 
 /* Core Ticker Styles */
 .ticker {
@@ -697,41 +728,40 @@ svg#map,svg#country{position:fixed;top:0;visibility:hidden}
     animation-play-state: running;
 }
 
-.ticker:hover .ticker-track {
-    animation-play-state: paused;
-}
+.ticker:hover .ticker-track { animation-play-state: paused; }
 
+/* Product Pills (Imports & Exports unified) */
 .product-pill {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 999px;
-    background: var(--bg);
-    color: var(--text);
+    background: rgba(255,255,255,0.06); /* light grey background */
+    color: #ffffff; /* white text */
     font-weight: 600;
     font-size: 0.95rem;
     box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--line);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform .18s ease, background .18s ease;
 }
 
-/* Animation Keyframes (Left to Right movement) */
+.product-pill:hover {
+    background: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+}
+
+/* Animation */
 @keyframes ticker-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
 
-/* Adjust animation speed/duration on smaller screens */
+/* Mobile Adjustments */
 @media (max-width: 600px) {
-    .ticker-subhead {
-        font-size: 1.2rem;
-    }
-    .ticker-track {
-        animation-duration: 18s; /* Faster scroll on mobile */
-    }
-    .products-ticker-section {
-        padding: 0 14px;
-        margin-top: 40px;
-    }
+    .ticker-subhead { font-size: 1.2rem; }
+    .ticker-track { animation-duration: 18s; }
+    .products-ticker-section { padding: 0 14px; margin-top: 40px; }
 }
+
  /* ========== END NEW PRODUCTS/TICKER SECTION STYLES ========== */
 
 /* WHY CHOOSE RNS GROUPS (updated styles) */
@@ -1633,3 +1663,115 @@ canvas#globe-3d {
 
 /* Accessibility note: outline removed visually for the globe canvas.
    The aria-label and keyboard handlers should remain on the canvas for screen-reader users. */
+/* ---------- QUICK OVERRIDES: paste at END of your stylesheet ---------- */
+
+/* Force main section headings to full white and above any overlays */
+.vision-title,
+.mission-title,
+#vision-title,
+#mission-title,
+#products-ticker-title
+{
+  color: #ffffff !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 9999 !important;    /* bring above pseudo-elements/overlays */
+  mix-blend-mode: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* Force paragraphs under Vision/Mission to be white and above overlays */
+.vision-card p,
+.mission-intro,
+.mission-intro p,
+.vision-section p,
+.mission-section p {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 9998 !important;
+}
+
+/* Ensure about/title descriptions are white */
+.about-desc,
+.card-body p,
+.muted-quote {
+  color: #ffffff !important;
+  position: relative !important;
+  z-index: 9998 !important;
+}
+
+/* Unify ticker backgrounds & pill look (imports and exports identical) */
+/* ---------- FINAL PRODUCTS TICKER FIX ---------- */
+
+/* Unified ticker background for both Imports & Exports */
+.ticker,
+.ticker.ticker-import,
+.ticker.ticker-export {
+  background: rgba(255, 255, 255, 0.06) !important; /* light grey transparent */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+/* Product pill consistency for both */
+.ticker .product-pill {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+  padding: 10px 20px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.ticker .product-pill:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Make both tickers scroll in same direction (left to right visually) */
+.ticker-track {
+  display: inline-flex;
+  gap: 20px;
+  animation: ticker-scroll 25s linear infinite;
+  white-space: nowrap;
+}
+
+.ticker-track.reverse {
+  animation: ticker-scroll 25s linear infinite; /* same direction now */
+}
+
+/* Smooth scrolling keyframes */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Optional hover pause */
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* Defensive: ensure pseudo-element overlays don't cover headings */
+/* If you have an overlay like .about::before or .vision-card::before, this keeps content above it. */
+.about::before,
+.vision-card::before,
+.mission-section::before,
+.products-ticker-section::before {
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Also ensure headings have no low opacity applied by any animation handlers */
+[data-animate] .vision-title,
+[data-animate] .mission-title {
+  opacity: 1 !important;
+  transform: none !important;
+}
