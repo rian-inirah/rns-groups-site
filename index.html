@@ -501,47 +501,48 @@
             <!-- =========================
      ABOUT US SECTION
 ========================= -->
-<section id="about" class="about" data-animate="rise" aria-labelledby="about-heading">
-      <div class="content-narrow">
-        
-        <!-- Heading -->
-        <div class="about-left">
-          <h2 id="about-heading" class="about-heading">
-            About <span class="accent">Us</span>
-          </h2>
-    
-          <div class="about-pill" aria-hidden="true"></div>
-    
-          <!-- Main About Paragraph -->
-          <p class="about-desc">
-            RNS Groups is a dynamic, next generation import, and export company based in India,
-            bridging the gap between Indian farms and global markets. We specialize in exporting
-            India’s finest agricultural commodities while importing the world’s best products for
-            Indian buyers.
-          </p>
-        </div>
-    
-        <!-- Secondary Description -->
-        <div class="about-info" role="region" aria-label="Company highlights">
-          <p class="about-desc" style="margin-top:22px;">
-            With a commitment to
-            <strong style="color:var(--accent)">verified quality</strong>,
-            <strong style="color:var(--accent)">on-time delivery</strong>, and
-            <strong style="color:var(--accent)">complete transparency</strong>,
-            we ensure every shipment meets international standards from sourcing to
-            documentation.
-          </p>
-    
-          <!-- Italic Quote -->
-          <p class="muted-quote" style="margin-top:16px;">
-            Partner with us for a reliable, long-term trade relationship built on integrity and
-            performance.
-          </p>
-        </div>
-    
-      </div>
-    
-    
+            <section id="about" class="about" data-animate="rise" aria-labelledby="about-heading">
+                  <div class="content-narrow">
+
+                        <!-- Heading -->
+                        <div class="about-left">
+                              <h2 id="about-heading" class="about-heading">
+                                    About <span class="accent">Us</span>
+                              </h2>
+
+                              <div class="about-pill" aria-hidden="true"></div>
+
+                              <!-- Main About Paragraph -->
+                              <p class="about-desc">
+                                    RNS Groups is a dynamic, next generation import, and export company based in India,
+                                    bridging the gap between Indian farms and global markets. We specialize in exporting
+                                    India’s finest agricultural commodities while importing the world’s best products
+                                    for
+                                    Indian buyers.
+                              </p>
+                        </div>
+
+                        <!-- Secondary Description -->
+                        <div class="about-info" role="region" aria-label="Company highlights">
+                              <p class="about-desc" style="margin-top:22px;">
+                                    With a commitment to
+                                    <strong style="color:var(--accent)">verified quality</strong>,
+                                    <strong style="color:var(--accent)">on-time delivery</strong>, and
+                                    <strong style="color:var(--accent)">complete transparency</strong>,
+                                    we ensure every shipment meets international standards from sourcing to
+                                    documentation.
+                              </p>
+
+                              <!-- Italic Quote -->
+                              <p class="muted-quote" style="margin-top:16px;">
+                                    Partner with us for a reliable, long-term trade relationship built on integrity and
+                                    performance.
+                              </p>
+                        </div>
+
+                  </div>
+
+
 
                   <!-- Feature grid (2x2) — icons built with CSS/SVG, no external images -->
                   <!-- Vision (big title + glowing card with pills) -->
@@ -698,36 +699,29 @@
                               <div class="form-row">
                                     <label for="name">Full Name</label>
                                     <input id="name" name="name" type="text" placeholder="Enter your full name" required
-                                          pattern="[A-Za-z\s]+" title="Name must contain only letters and spaces."
-                                          onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || event.charCode == 32">
+                                          pattern="[A-Za-z]+([\s.']{1}[A-Za-z]+)*"
+                                          title="Please use only letters, spaces, dots, or apostrophes for your name."
+                                          autocomplete="name">
                               </div>
 
-                              <!-- Country (now a typeable text input) -->
                               <div class="form-row">
                                     <label for="country">Country</label>
-                                    <input id="country" name="country" type="text"
+                                    <input id="countryname" name="country" type="text"
                                           placeholder="Enter your country (e.g. India)" required
                                           pattern="[A-Za-z\s.'\-]{2,80}"
                                           title="Country name should contain letters, spaces or common punctuation.">
                               </div>
 
-                              <!-- Phone: now the country code is a typeable input + phone input -->
                               <div class="form-row">
                                     <label for="phone">Phone Number</label>
                                     <div class="phone-input-group">
-                                          <!-- User-typed country code input -->
                                           <input id="countryCode" name="countryCode" type="text"
-                                                class="country-code-input" placeholder="91" required
-                                                inputmode="numeric"
-                                                maxlength="4"
-                                                pattern="^\+?[0-9]{1,4}$"
-                                                title="Country code (e.g. 91). Up to 4 digits."
-                                                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-                                          <!-- Local phone number -->
+                                                class="country-code-input" placeholder="91" required inputmode="numeric"
+                                                maxlength="4" pattern="^\+?\d{1,4}$"
+                                                title="Country code must contain 1-4 digits and optionally start with a plus sign (+).">
                                           <input id="phone" name="phone" type="tel" placeholder="Your phone number"
-                                                required pattern="[0-9]{4,15}"
-                                                title="Phone number must contain only digits (4–15 digits)."
-                                                onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                                required pattern="\d{4,15}"
+                                                title="Phone number must contain only digits (4–15 digits).">
                                     </div>
                               </div>
 
@@ -735,7 +729,7 @@
                               <div class="form-row">
                                     <label for="email">Email Address</label>
                                     <input id="email" name="email" type="email" placeholder="your.email@company.com"
-                                          required title="Please include an '@' symbol in the email address.">
+                                          required title="Please enter a valid email address (e.g., name@domain.com).">
                               </div>
 
                               <div class="form-row">

@@ -1,4 +1,4 @@
-// script.js - Updated complete file
+// script.js - Final Robust Version
 // Purpose: page UI behavior, contact form, country code mapping, sidebar, and mobile globe repositioning API
 
 // Sidebar toggle
@@ -12,12 +12,10 @@ function openSidebar() {
     overlay?.classList.add('show');
     hamburger?.setAttribute('aria-expanded', 'true');
     sidebar?.setAttribute('aria-hidden', 'false');
-    // Focus the close button for accessibility
     document.getElementById('closeSidebar')?.focus();
 }
 
 function hideSidebar() {
-    // Return focus to the hamburger for accessibility
     hamburger?.focus();
     sidebar?.classList.remove('open');
     overlay?.classList.remove('show');
@@ -44,56 +42,10 @@ const io = new IntersectionObserver(entries => {
 }, { threshold: 0.16 });
 document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
 
+
 /* ----------------------------
-   Country code mapping data
-   (kept small here; you already have a full list)
-   ---------------------------- */
-const countryCodeData = [
-    { name: 'India', code: '+91' }, { name: 'United States', code: '+1' },
-    { name: 'United Kingdom', code: '+44' }, { name: 'United Arab Emirates', code: '+971' },
-    { name: 'Saudi Arabia', code: '+966' }, { name: 'Australia', code: '+61' },
-    { name: 'Singapore', code: '+65' }, { name: 'Germany', code: '+49' },
-    { name: 'France', code: '+33' }, { name: 'Japan', code: '+81' }
-];
-
-const countrySel = document.getElementById('country');
-const countryCodeHidden = document.getElementById('countryCodeHidden');
-const countryCodeDisplay = document.getElementById('countryCodeDisplay');
-
-// On DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-    // Set default country if present in the select
-    const defaultCountry = 'India';
-    if (countrySel && countrySel.querySelector(`option[value="${defaultCountry}"]`)) {
-        countrySel.value = defaultCountry;
-        updateCountryCodeDisplay(defaultCountry);
-    }
-
-    // Auto-open sidebar details if a sub-link is active
-    const detailsElement = document.querySelector('.sidebar-nav details');
-    if (detailsElement) {
-        const activeSubLink = detailsElement.querySelector('.sub-link.is-active');
-        if (activeSubLink) detailsElement.open = true;
-    }
-
-    // Make globe canvas accessible (if present)
-    const globeCanvas = document.querySelector('#globe-3d');
-    if (globeCanvas) {
-        globeCanvas.setAttribute('tabindex', '0');
-        globeCanvas.setAttribute('role', 'img');
-        if (!globeCanvas.getAttribute('aria-label')) {
-            globeCanvas.setAttribute('aria-label', 'Interactive 3D globe. Use touch or mouse to rotate.');
-        }
-    }
-
-    // Call mobile reposition once on load if the helper was attached below
-    if (typeof window.__moveGlobeForMobile === 'function') {
-        try { window.__moveGlobeForMobile(); } catch (err) { /* ignore */ }
-    }
-});
-
-// AUTO-ALIGN: robust version (waits a bit, forces important, fallback to transform, logs)
-// AUTO-ALIGN: robust persistent version
+    AUTO-ALIGN
+    ---------------------------- */
 function alignImportToExportOnce() {
     try {
       const tickers = document.querySelectorAll('.products-ticker-section .ticker');
@@ -103,40 +55,33 @@ function alignImportToExportOnce() {
       }
       const importTicker = tickers[0];
       const exportTicker = tickers[1];
-  
-      // short delay so layout/font rendering finishes
+    
       setTimeout(() => {
         try {
           const impRect = importTicker.getBoundingClientRect();
           const expRect = exportTicker.getBoundingClientRect();
           const diff = Math.round(expRect.left - impRect.left);
-  
+    
           console.log('align: impLeft=', impRect.left, 'expLeft=', expRect.left, 'diff=', diff);
-  
-          // If diff is significant, set/update margin-left and persist it
+    
           if (Math.abs(diff) > 1) {
             importTicker.style.setProperty('margin-left', diff + 'px', 'important');
             importTicker.setAttribute('data-auto-adjust', 'margin');
-            // remove any transform fallback if set previously
             if (importTicker.getAttribute('data-auto-adjust') === 'transform') {
               importTicker.style.removeProperty('transform');
             }
             console.log('align: set margin-left to', diff + 'px');
             return;
           }
-  
-          // If diff is negligible AND we've never adjusted before, do nothing.
-          // If we've previously adjusted, keep that adjustment (do not remove),
-          // because immediately after applying margin the measured diff will be ~0.
+    
           if (importTicker.getAttribute('data-auto-adjust')) {
             console.log('align: already adjusted previously; keeping inline margin');
-            // Optional: recompute the currently-set margin and log it
             const currentInline = importTicker.style.marginLeft || '(none)';
             console.log('align: current inline marginLeft =', currentInline);
           } else {
             console.log('align: negligible diff and no previous auto adjustment');
           }
-  
+    
         } catch (innerErr) {
           console.warn('align inner err', innerErr);
         }
@@ -145,11 +90,10 @@ function alignImportToExportOnce() {
       console.warn('alignImportToExportOnce error', err);
     }
   }
-  
-  // Event listeners: recalc on load + DOM ready + resize/orientation (debounced)
+    
   window.addEventListener('load', alignImportToExportOnce);
   document.addEventListener('DOMContentLoaded', () => setTimeout(alignImportToExportOnce, 260));
-  
+    
   let __alignTimer;
   window.addEventListener('resize', () => {
     clearTimeout(__alignTimer);
@@ -161,62 +105,80 @@ function alignImportToExportOnce() {
   });
 
 /* ----------------------------
-   Contact Form
-   ---------------------------- */
-   function validateEmail(email) {
-    return typeof email === 'string' && email.includes('@');
-}
-
+    Contact Form
+    ---------------------------- */
 const form = document.getElementById('contactForm');
 form?.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const nameInput = document.getElementById('name');
-    const countrySel = document.getElementById('country');       // now a text input
-    const countryCodeInput = document.getElementById('countryCode');
-    const phoneInput = document.getElementById('phone');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
+    // Replace the old input retrieval line:
+// const countrySel = document.getElementById('country');
 
-    const name = nameInput?.value.trim() || '';
-    const phone = phoneInput?.value.trim() || '';
-    const email = emailInput?.value.trim() || '';
-    const message = messageInput?.value.trim() || '';
-    const country = countrySel?.value.trim() || '';
-    const countryCode = countryCodeInput?.value.trim() || '';
+// ...
 
-    // Required check
+// Lines 129 onwards in the event listener:
+const nameInput = document.getElementById('name');
+const countryInput = document.getElementById('countryname'); // <-- NEW NAME USED HERE
+const countryCodeInput = document.getElementById('countryCode');
+const phoneInput = document.getElementById('phone');
+const emailInput = document.getElementById('email');
+const messageInput = document.getElementById('message');
+
+// Lines 135 onwards (the value assignments):
+const name = nameInput?.value?.trim() || '';
+const phone = phoneInput?.value?.trim() || '';
+const email = emailInput?.value?.trim() || '';
+const message = messageInput?.value?.trim() || '';
+const country = countryInput?.value?.trim() || ''; // <-- USE NEW NAME HERE
+const countryCode = countryCodeInput?.value?.trim() || '';
+
+// ...
+
+// Lines 150 onwards (the validation checks):
+
+
+    // --- START VALIDATION ---
+    console.log('Form submission attempted.');
+    console.log('Values:', { name, country, countryCode, phone, email, message });
+
+    // 1. Required Check (If this fails, it means one variable is an empty string "")
     if (!name || !phone || !email || !country || !countryCode || !message) {
+        console.error('Validation Failed: Missing required field.');
         alert('Please fill in all fields before sending the message.');
         return;
     }
-
-    // HTML validity checks (pattern etc.)
+    
+    // 2. HTML validity checks (Native pattern checks)
     if (nameInput && !nameInput.checkValidity()) {
+        console.error('Validation Failed: Invalid name format.');
         alert(nameInput.title || 'Invalid name format.');
         return;
     }
     if (phoneInput && !phoneInput.checkValidity()) {
+        console.error('Validation Failed: Invalid phone format. Phone value:', phone);
         alert(phoneInput.title || 'Invalid phone format.');
         return;
     }
-    if (countrySel && !countrySel.checkValidity()) {
-        alert(countrySel.title || 'Invalid country name format.');
+    if (countryInput && !countryInput.checkValidity()) {
+        console.error('Validation Failed: Invalid country name format. Country value:', country);
+        alert(country.title || 'Invalid country name format.');
         return;
     }
     if (countryCodeInput && !countryCodeInput.checkValidity()) {
+        console.error('Validation Failed: Invalid country code format. Code value:', countryCode);
         alert(countryCodeInput.title || 'Invalid country code format.');
         return;
     }
 
-    // Email validation
+    // 3. Custom Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
+        console.error('Validation Failed: Invalid email regex match. Email value:', email);
         alert(emailInput?.title || 'Please enter a valid email address.');
         return;
     }
 
-    // Normalize country code: ensure it either starts with + or add it
+    // 4. Processing & Mailto
     let normalizedCode = countryCode;
     if (!normalizedCode.startsWith('+')) {
         normalizedCode = '+' + normalizedCode.replace(/[^0-9]/g, '');
@@ -226,15 +188,16 @@ form?.addEventListener('submit', (e) => {
     const subject = encodeURIComponent(`New enquiry from ${name} (${country})`);
     const body = encodeURIComponent(`Name: ${name}\nCountry: ${country}\nPhone: ${fullPhone}\nEmail: ${email}\n\nMessage:\n${message}`);
 
-    // Mailto fallback (keeps current behavior)
-    window.location.href = `mailto:info@rnsgroups.in?subject=${subject}&body=${body}`;
+    console.log('Validation Passed. Attempting mailto...');
+    
+    window.location.href = `mailto:23b141@psgitech.ac.in?subject=${subject}&body=${body}`;
 });
+
 /* ----------------------------
-   Nav link active highlight & contact scroll behavior
-   ---------------------------- */
+    Nav link active highlight & contact scroll behavior
+    ---------------------------- */
 const currentPage = window.location.pathname.split("/").pop();
 
-// Function to set the active state on the correct link
 function setActiveLink(linkElements) {
     document.querySelectorAll(".nav-link").forEach(l => l.classList.remove("is-active"));
     linkElements.forEach(l => l.classList.add("is-active"));
@@ -267,28 +230,20 @@ if (window.location.pathname.endsWith("index.html") || window.location.pathname 
                 const rect = contactSection.getBoundingClientRect();
                 
                 if (entry.isIntersecting) {
-                    // Contact section is visible
                     setActiveLink(contactLink);
                 } else if (rect.top > 0) {
-                    // User is scrolling *up* and the contact section is out of view (above 0)
-                    // If the top of the contact section is above the viewport (i.e. we scrolled past it)
-                    // we don't change anything, the previous logic handles that.
-                    
-                    // If the contact section is below a certain point of the viewport (e.g. 60% of screen height) 
-                    // AND not intersecting, assume we're back in the "Home" or previous sections.
                     if (rect.top > window.innerHeight * 0.6) {
-                         setActiveLink(homeLink);
+                            setActiveLink(homeLink);
                     }
                 }
             });
         }, { 
             root: null, 
-            threshold: [0, 0.4] // Observe when it enters/leaves completely (0) and when it's 40% visible (0.4)
+            threshold: [0, 0.4]
         });
         
         observer.observe(contactSection);
 
-        // Initial check to set home if we aren't in contact section on load
         const rect = contactSection.getBoundingClientRect();
         if (rect.top > window.innerHeight) {
             setActiveLink(homeLink);
@@ -304,18 +259,14 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
             e.preventDefault();
             target.scrollIntoView({ behavior: "smooth" });
             setActiveLink(document.querySelectorAll('.nav-link[href*="#contact"]'));
-            // Close sidebar after click on mobile
             if (window.innerWidth <= 900) hideSidebar();
         }
     });
 });
 
 /* ===============================
-   MOBILE GLOBE REPOSITIONING (EXPOSED API)
-   - This function is attached to window.__moveGlobeForMobile
-   - It moves the .globe-container (or .globe-wrap) below the header/search area on small screens
-   - Restores it to original parent on larger screens
-   =============================== */
+    MOBILE GLOBE REPOSITIONING
+    =============================== */
 (function() {
     const MOBILE_MAX = 768;
     const globeSelector = '.globe-container, .globe-wrap';
@@ -335,13 +286,11 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
         if (!globe) return;
         const isMobile = window.innerWidth <= MOBILE_MAX;
 
-        // save original position once
         if (!originalLocations.has(globe)) {
             originalLocations.set(globe, { parent: globe.parentNode, next: globe.nextSibling });
         }
 
         if (isMobile) {
-            // Try to find the header-search or fallback to site-header
             const searchCandidates = [
                 '.site-header .search-bar', '.site-header .header-search', '.site-header #search',
                 '.site-header .search-input', '.search-bar', '#search', '.header-search'
@@ -356,7 +305,6 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
             if (anchor) {
                 insertAfter(globe, anchor);
             } else {
-                // fallback: put before hero or as first child of body
                 const hero = document.querySelector('.hero');
                 if (hero) hero.insertBefore(globe, hero.firstChild);
                 else document.body.insertBefore(globe, document.body.firstChild);
@@ -364,7 +312,6 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
 
             globe.classList.add('globe-container--moved');
         } else {
-            // restore original parent/position
             const info = originalLocations.get(globe);
             if (info && info.parent) {
                 if (info.next && info.next.parentNode === info.parent) {
@@ -377,10 +324,8 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
         }
     }
 
-    // expose function for other scripts to call and to avoid undefined errors
     window.__moveGlobeForMobile = moveGlobeForMobile;
 
-    // run on resize and orientation change (debounced)
     let t;
     function debouncedMove() {
         clearTimeout(t);
@@ -393,10 +338,9 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
 })();
 
 /* ------------------------------
-   Mobile: ensure contact section sits below sticky header (dynamic)
-   Add this near the end of script.js
-   ------------------------------ */
-   (function mobileContactPaddingAdjust() {
+    Mobile: contact padding adjust
+    ------------------------------ */
+    (function mobileContactPaddingAdjust() {
     const MOBILE_MAX = 640;
 
     function applyContactPadding() {
@@ -407,41 +351,32 @@ document.querySelectorAll('.nav-link[href*="#contact"]').forEach(link => {
 
             const w = window.innerWidth || document.documentElement.clientWidth;
             if (w > MOBILE_MAX) {
-                // Remove inline style on larger viewports so desktop rules apply
                 contactEl.style.paddingTop = '';
                 return;
             }
 
-            // Measure header including margins
             const headerRect = headerEl.getBoundingClientRect();
-            // Add small buffer (20px) so content doesn't touch header
             const buffer = 20;
             const computedTop = Math.ceil(headerRect.height + buffer);
 
-            // Apply computed paddingTop as inline style (stronger than CSS)
             contactEl.style.paddingTop = computedTop + 'px';
 
-            // Optionally nudge whatsapp-fab up if it overlaps bottom of card:
             const fab = document.querySelector('.whatsapp-fab');
             if (fab) {
-                // keep fab above inputs but below header; move it slightly above bottom if needed
                 fab.style.bottom = '12px';
                 fab.style.zIndex = 110;
             }
         } catch (err) {
-            // fail silently - CSS fallback will apply
             console.warn('contact padding adjust err', err);
         }
     }
 
-    // Debounce util
     let t;
     function debouncedApply() {
         clearTimeout(t);
         t = setTimeout(applyContactPadding, 80);
     }
 
-    // Run on DOM ready + resize + orientationchange
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
         applyContactPadding();
     } else {
