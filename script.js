@@ -190,7 +190,7 @@ const countryCode = countryCodeInput?.value?.trim() || '';
 
     console.log('Validation Passed. Attempting mailto...');
     
-    window.location.href = `mailto:23b141@psgitech.ac.in?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:info@rnsgroups.in?subject=${subject}&body=${body}`;
 });
 
 /* ----------------------------
